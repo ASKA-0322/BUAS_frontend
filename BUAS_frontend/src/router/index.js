@@ -37,37 +37,44 @@ export const constantRouterMap = [
     }]
   },
 
+  //基本属性分析
   {
-    path: '/example',
+    path: '/basicAttributeAnalysis',    //基本属性分析
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
+    redirect: '/basicAttributeAnalysis/genderAggregation', //跳转
+    name: '基本属性分析',
+    meta: { title: '基本属性分析', icon: 'example' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: 'genderAggregation',
+        name: '用户性别聚合分析',
+        component: () => import('@/views/basicAttributeAnalysis/genderAggregation'), //设置要跳转的页面路径
+        meta: { title: '用户性别聚合分析', icon: 'gender' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'ageAggregation',
+        name: '用户年龄聚合分析',
+        component: () => import('@/views/basicAttributeAnalysis/ageAggregation'),
+        meta: { title: '用户年龄聚合分析', icon: 'age' }
+      },
+      {
+        path: 'cardAggregation',
+        name: '用户持卡聚合分析',
+        component: () => import('@/views/basicAttributeAnalysis/cardAggregation'),
+        meta: { title: '用户年龄聚合分析', icon: 'card' }
       }
     ]
   },
 
   {
-    path: '/form',
+    path: '/areaAnalysis',
     component: Layout,
     children: [
       {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        path: 'area',
+        name: '地域分析',
+        component: () => import('@/views/areaAnalysis/area'),
+        meta: { title: '地域分析', icon: 'area1' }
       }
     ]
   },
