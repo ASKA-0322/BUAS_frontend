@@ -3,6 +3,7 @@
 cnpm install
 run项目
 cnpm run dev
+<<<<<<< Updated upstream
 
 ------------------------哎哟 不错哦
 ------------------------王以宁
