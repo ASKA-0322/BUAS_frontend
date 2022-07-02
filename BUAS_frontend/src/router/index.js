@@ -165,12 +165,6 @@ export const constantRouterMap = [
         name: '风险性别分析',
         component: () => import('@/views/riskAnalysis/genderRiskAnalysis'),
         meta: { title: '风险性别特征', icon: 'gender' }
-      },
-      {
-        path: 'echartsTest',
-        name: 'echarts测试',
-        component: () => import('@/views/riskAnalysis/echartsTest'),
-        meta: { title: 'echarts测试', icon: 'gender' }
       }
     ]
   },
