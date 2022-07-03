@@ -47,11 +47,11 @@
           text: "2022年度歌手",
           left: "center"
         },
-        tooltip: {
+        tooltip: {      //图例提示组件
           trigger: "item",
           formatter: "{a} <br/>{b} : {c} ({d}%)"
         },
-        legend: {
+        legend: {     //图例筛选组件 跟series配合使用 data要与series的name一致
           orient: "vertical",
           left: "left",
           data: [
