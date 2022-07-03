@@ -174,6 +174,23 @@ export const constantRouterMap = [
       }
     ]
   },
+  //用户后台管理
+  {
+    path: '/backstageManage',
+    component: Layout,
+    redirect: '/backstageManage/backstageManage', //跳转
+    name: '后台管理',
+    //component: () => import('@/views/backstageManage/backstageManage'),
+    meta: { title: '后台管理', icon: 'pay' },
+    children:[
+      {
+        path: 'backstageManage',
+        name: '后台管理',
+        component: () => import('@/views/backstageManage/backstageManage'), //设置要跳转的页面路径
+        meta: { title: '后台管理', icon: 'back' }
+      },
+    ],
+  },
 
   {
     path: '/nested',
