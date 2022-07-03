@@ -13,6 +13,7 @@
          <el-input placeholder="身份证号" />
     </el-form-item>
     <el-button type="primary" icon="el-icon-search" @click="getList()">查询</el-button><!-- @click绑定调用方法 -->
+     <el-button type="primary" icon="el-icon-plus" @click="getList()">添加用户</el-button><!-- @click绑定调用方法 -->
   </el-form>
 
   <!--用户管理表格 -->
