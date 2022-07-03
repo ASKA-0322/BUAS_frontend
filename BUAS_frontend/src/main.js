@@ -3,7 +3,7 @@ import 'echarts';   //全量引入 ECharts 从而无需手动引入模块
 import ECharts from 'vue-echarts'
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
-import ElementUI from 'element-ui'
+import ElementUI from 'element-ui'    //引入elementUI
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 
