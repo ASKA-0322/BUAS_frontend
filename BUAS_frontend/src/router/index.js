@@ -101,13 +101,13 @@ export const constantRouterMap = [
         path: 'payWay',
         name: '支付方式',
         component: () => import('@/views/payPreferAnalysis/payWay'), //设置要跳转的页面路径
-        meta: { title: '支付方式', icon: 'way' }
+        meta: { title: '支付方式', icon: 'zhifufangshi' }
       },
       {
         path: 'payCategory',
         name: '消费类别',
         component: () => import('@/views/payPreferAnalysis/payCategory'),
-        meta: { title: '消费类别', icon: 'category' }
+        meta: { title: '消费类别', icon: 'leibie' }
       }
     ]
   },
@@ -118,7 +118,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/consumeAnalysis/consumeAreaAnalysis', //跳转
     name: '消费分析',
-    meta: { title: '消费分析', icon: 'example' },
+    meta: { title: '消费分析', icon: 'xiaofei' },
     children: [
       {
         path: 'consumeAreaAnalysis',

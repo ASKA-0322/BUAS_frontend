@@ -34,9 +34,9 @@
     </el-table-column>
     <el-table-column prop="phone" label="电话" width="120">
     </el-table-column>
-    <el-table-column prop="email" label="邮件" width="190">
+    <el-table-column prop="email" label="邮箱" width="200">
     </el-table-column>
-    <el-table-column prop="authority" label="权限" width="120">
+    <el-table-column prop="authority" label="权限" width="200">
     </el-table-column>
     <el-table-column fixed="right" label="操作" width="100">
       <template slot-scope="scope">
