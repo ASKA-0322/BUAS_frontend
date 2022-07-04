@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import { color } from 'echarts/core'
 // 引入地图的json文件
 const chinaJson = require('@/assets/china.json')
 
@@ -21,7 +22,7 @@ export default {
     this.$echarts.registerMap('china', chinaJson)
 
     var geoCoordMap = {
-      台湾: [121.5135, 25.0308],
+      台湾省: [121.5135, 25.0308],
       黑龙江: [127.9688, 45.368],
       内蒙古: [110.3467, 41.4899],
       吉林: [125.8154, 44.2584],
@@ -56,6 +57,7 @@ export default {
 
     }
     var data = [
+      { name: '台湾省', value: 19 },
       { name: '北京', value: 199 },
       { name: '天津', value: 42 },
       { name: '河北', value: 102 },
@@ -108,10 +110,10 @@ export default {
         type: 'linear',
         x: 0,
         y: 0,
-        x2: 1,
+        x2: 0,
         y2: 1,
         colorStops: [{
-          offset: 0, color: '#0f378f' // 0% 处的颜色
+          offset: 0, color: '#0199AE' // 0% 处的颜色
         }, {
           offset: 1, color: '#00091a' // 100% 处的颜色
         }],
@@ -123,7 +125,8 @@ export default {
         subtext: '',
         x: 'center',
         textStyle: {
-          color: '#ccc'
+          color: '#fff',
+          fontSize:25
         }
       },
 
@@ -155,17 +158,16 @@ export default {
           color: '#fff'
         }
       },
-      visualMap: {
-        show: false,
+      visualMap: {    //滚动筛选图例工具
+        show: true,
         min: 0,
-        max: 500,
+        max: 200,
         left: 'left',
         top: 'bottom',
         text: ['高', '低'], // 文本，默认为数值文本
         calculable: true,
         seriesIndex: [1],
         inRange: {
-
         }
       },
       geo: {
@@ -174,10 +176,10 @@ export default {
         roam: true,
         label: {
           normal: {
-            show: false
+            show: false   //未选中状态下不显示默认省份文本
           },
           emphasis: {
-            show: false
+            show: false   //选中状态下不显示默认省份文本
           }
         },
         itemStyle: {
@@ -198,11 +200,11 @@ export default {
           symbolSize: 5,
           label: {
             normal: {
-              formatter: '{b}',
+              formatter: '{b}',   //白色省份文本标记
               position: 'right',
               show: true
             },
-            emphasis: {
+            emphasis: {     //点击之后红色省份文本
               show: true
             }
           },
