@@ -58,21 +58,36 @@
           orient: "vertical",
           left: "left",
           data: [
-            "男",
-            "女",
+            "男性",
+            "女性",
           ]
         },
         series: [
           {
             name: "用户性别",
             type: "pie",
-            radius: "70%",
+            radius: ['40%', '70%'],
             center: ["50%", "60%"],
             data: [
-              { value: 1024, name: "男" },
-              { value: 965, name: "女" },
+              { value: 1024, name: "男性" },
+              { value: 1532, name: "女性" },
             ],
+            avoidLabelOverlap: false,
+            itemStyle: {
+              borderRadius: 5,
+              borderColor: '#fff',
+              borderWidth: 2
+            },
+            label: {
+              show: false,
+              position: 'center'
+            },
             emphasis: {
+              label: {
+                show: true,
+                fontSize: '40',
+                fontWeight: 'bold'
+              },
               itemStyle: {
                 shadowBlur: 10,
                 shadowOffsetX: 0,
