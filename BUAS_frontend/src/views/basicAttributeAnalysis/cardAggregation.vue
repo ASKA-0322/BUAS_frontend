@@ -63,23 +63,28 @@
             "三张",
             "四张",
             "五张",
-            "六张及以上"
+            "六张",
+            "七张及以上"
           ]
         },
         series: [
           {
             name: "用户持卡数",
             type: "pie",
-            radius: "75%",
+            radius: [50, 200],
             roseType: 'area',
             center: ["50%", "60%"],
+            itemStyle: {
+              borderRadius: 5
+            },
             data: [
               { value: 1024, name: "一张" },
               { value: 965, name: "两张" },
-              { value: 752, name: "三张" },
-              { value: 589, name: "四张" },
-              { value: 256, name: "五张" },
-              { value: 215, name: "六张及以上" }
+              { value: 865, name: "三张" },
+              { value: 733, name: "四张" },
+              { value: 520, name: "五张" },
+              { value: 349, name: "六张" },
+              { value: 299, name: "七张及以上" }
             ],
             emphasis: {
               itemStyle: {
