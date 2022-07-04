@@ -70,7 +70,7 @@
           {
             name: "用户持卡数",
             type: "pie",
-            radius: "75%",
+            radius: "70%",
             roseType: 'area',
             center: ["50%", "60%"],
             data: [

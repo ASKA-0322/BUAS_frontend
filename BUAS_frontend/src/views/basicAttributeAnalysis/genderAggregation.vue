@@ -1,50 +1,97 @@
 <template>
-  <div class="app-container">
-    哎哟 不错哦
+
+  <div class="app-container" id="main">
+    用户性别聚合分析
   </div>
+
 </template>
-<script>
-//引入接口定义的js文件 basicAttributeAnalysis.js
-import basicAttributeAnalysis from  '@/api/basicAttributeAnalysis.js'
 
-export default {
+ <script>
 
- data(){    //定义变量和初始值
-  return{
-    para1:1,  //当前页
-    para2:3,    //每页显示的记录数
-    pageObj:{},    //条件封装对象
-    list:[],   //每页数据集合
-    total:0   //总记录数
-  }
- },
+    // 引入 echarts 核心模块，核心模块提供了 echarts 使用必须要的接口。
+    import * as echarts from 'echarts/core';
+    // 引入饼图图表，图表后缀都为 Chart
+    import { PieChart } from 'echarts/charts';
+    // 引入提示框，标题，直角坐标系，数据集，内置数据转换器组件，组件后缀都为 Component
+    import {
+      TitleComponent,
+      TooltipComponent,
+      GridComponent,
+      DatasetComponent,
+      TransformComponent
+    } from 'echarts/components';
+    // 标签自动布局，全局过渡动画等特性
+    import { LabelLayout, UniversalTransition } from 'echarts/features';
+    // 引入 Canvas 渲染器，注意引入 CanvasRenderer 或者 SVGRenderer 是必须的一步
+    import { CanvasRenderer } from 'echarts/renderers';
 
- created () {   //在页面渲染之前执行
-  //一般调用methods定义的方法，得到数据
-      this.getGender()
+    export default {
+      created () {
+        // 注册必须的组件
+        echarts.use([
+          TitleComponent,
+          PieChart,
+          TooltipComponent,
+          GridComponent,
+          DatasetComponent,
+          TransformComponent,
+          BarChart,
+          LabelLayout,
+          UniversalTransition,
+          CanvasRenderer,
+        ]);
 
- },
- methods:{//定义方法,进行请求接口调用
-      //用户性别聚合分析
-      getGender(){
-        basicAttributeAnalysis.getGenderAggregation(this.para1,this.para2,this.pageObj)
-          .then(response => {   //表示请求成功之后调用 response是接口返回的数据
-            //返回集合赋值给list
-            this.list = response.data.pageObj
-            //总记录数
-            this.total = response.data.total
-          })
-          .catch(error => {     //请求失败时调用
-            console.log(error)
-          })
-      }
- }
-}
+      },
+      mounted () {
+        // 初始化图表，设置配置项
+        var myChart = echarts.init(document.getElementById('main'));
+        let option ={
+          title: {
+          text: "用户性别聚合分析",
+          left: "center"
+        },
+        tooltip: {      //图例提示组件
+          trigger: "item",
+          formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {     //图例筛选组件 跟series配合使用 data要与series的name一致
+          orient: "vertical",
+          left: "left",
+          data: [
+            "男",
+            "女",
+          ]
+        },
+        series: [
+          {
+            name: "用户性别",
+            type: "pie",
+            radius: "70%",
+            center: ["50%", "60%"],
+            data: [
+              { value: 1024, name: "男" },
+              { value: 965, name: "女" },
+            ],
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: "rgba(0, 0, 0, 0.5)"
+              }
+            }
+          }
+        ]
+        }
+        myChart.setOption(option);    //调用工具
+      },
+      name: '',
+    }
+
 </script>
 <style scoped>
-
+#main {
+  height: 600px;
+  margin-top: 50px;
+}
 </style>
-
-
-
 
