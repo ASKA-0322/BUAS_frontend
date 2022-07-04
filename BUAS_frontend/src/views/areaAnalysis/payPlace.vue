@@ -29,12 +29,10 @@
       // 注册必须的组件
       echarts.use([
         TitleComponent,
-        PieChart,
         TooltipComponent,
         GridComponent,
         DatasetComponent,
         TransformComponent,
-        BarChart,
         LabelLayout,
         UniversalTransition,
         CanvasRenderer,
@@ -47,6 +45,7 @@
       let option = {
         title: {
           text: "支付地点分析",
+          textStyle:{fontSize:30},
           left: "center"
         },
         tooltip: {
@@ -75,7 +74,7 @@
 </script>
 <style scoped>
   #main {
-    height: 700px;
+    height: 500px;
     margin-top: 50px;
   }
 </style>
