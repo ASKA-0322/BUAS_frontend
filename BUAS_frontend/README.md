@@ -6,7 +6,6 @@ VUE+ElementUI+ECharts
 axios 请求库
 iconfont 矢量图库
 
-<<<<<<< HEAD
 vue-cli2项目结构
 Project
 ├── build                     构建脚本目录
@@ -73,6 +72,4 @@ Project
 ├── package.json              项目基本信息
 │
 └── README.md                 项目介绍
-=======
-qcx测试
->>>>>>> f1e8047b50336c327710981fcc6611df05266b09
+
