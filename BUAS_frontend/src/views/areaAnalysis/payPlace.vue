@@ -19,7 +19,7 @@
     LabelLayout,
     UniversalTransition
   } from 'echarts/features';
-  // 引入 Canvas 渲染器，注意引入 CanvasRenderer 或者 SVGRenderer 是必须的一步
+  // 引入引 Canvas 渲染器，注意入 CanvasRenderer 或者 SVGRenderer 是必须的一步
   import {
     CanvasRenderer
   } from 'echarts/renderers';
@@ -48,19 +48,9 @@
           textStyle:{fontSize:30},
           left: "center"
         },
-        tooltip: {
+        tooltip: {      //图例提示组件
           trigger: "item",
           formatter: "{b}<br/>{c} "
-        },
-        visualMap: {
-          min: 0,
-          max: 100,
-          text: ['High', 'Low'],
-          calculable: true,
-          seriesIndex: [0], //这个对应的是series的数组下标
-          inRange: {
-            color: ["#00467F", "#A5CC82"]
-          }
         },
         geo: { //地理坐标组件
           show: true,
@@ -68,7 +58,7 @@
           map: "chinaMap"
         }
       };
-      myChart.setOption(option);
+      myChart.setOption(option);    //调用工具
     },
   };
 </script>

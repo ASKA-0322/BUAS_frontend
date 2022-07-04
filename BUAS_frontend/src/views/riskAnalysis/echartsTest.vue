@@ -66,7 +66,7 @@
           {
             name: "歌曲播放量",
             type: "pie",
-            radius: "55%",
+            radius: "65%",
             center: ["50%", "60%"],
             data: [
               { value: 335, name: "蔡依林" },
