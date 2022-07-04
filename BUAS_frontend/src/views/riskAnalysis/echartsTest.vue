@@ -85,7 +85,7 @@
           }
         ]
         }
-        myChart.setOption(option);
+        myChart.setOption(option);    //调用工具
       },
       name: '',
     }
