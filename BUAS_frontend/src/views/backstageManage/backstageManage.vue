@@ -114,10 +114,58 @@
           area: '200333',
           consumption_area:'柜员',
           consumption_amount:'15545621548',
-          pay_method:'121513@163.com',
+          pay_method:'121513@qq.com',
           pay_time:'B',
           commodity_category:'文体用品'
-        }]
+        }, {
+          id: '165791',
+          name: '罗大佑',
+          sex: '男',
+          age: '67',
+          credit_cards: '4531354313313213',
+          area: '19790118',
+          consumption_area:'柜员',
+          consumption_amount:'15545621548',
+          pay_method:'964321@163.com',
+          pay_time:'B',
+          commodity_category:'文体用品'
+        }, {
+          id: '165760',
+          name: '张学友',
+          sex: '男',
+          age: '60',
+          credit_cards: '4535231311334138',
+          area: '19790118',
+          consumption_area:'项目经理',
+          consumption_amount:'15545621548',
+          pay_method:'6547913@qq.com',
+          pay_time:'S',
+          commodity_category:'文体用品'
+        }, {
+          id: '249637',
+          name: '梁静茹',
+          sex: '女',
+          age: '44',
+          credit_cards: '4313553141321337',
+          area: '200333',
+          consumption_area:'资深员工',
+          consumption_amount:'15545621548',
+          pay_method:'149876@qq.com',
+          pay_time:'A',
+          commodity_category:'文体用品'
+        }, {
+          id: '497135',
+          name: '邓紫棋',
+          sex: '女',
+          age: '30',
+          credit_cards: '4553131354531049',
+          area: '19790118',
+          consumption_area:'资深员工',
+          consumption_amount:'15545621548',
+          pay_method:'921053@163.com',
+          pay_time:'A',
+          commodity_category:'文体用品'
+        }, ]
       }
     }
   }
