@@ -18,25 +18,27 @@
 
   <!--用户管理表格 -->
   <el-table :data="tableData" stripe style="width: 100%">
-    <el-table-column fixed prop="id" label="用户ID" width="100">
+    <el-table-column fixed prop="id" label="用户id" width="100">
     </el-table-column>
     <el-table-column prop="name" label="姓名" width="100">
     </el-table-column>
-    <el-table-column prop="gender" label="性别" width="100">
+    <el-table-column prop="sex" label="性别" width="100">
     </el-table-column>
     <el-table-column prop="age" label="年龄" width="100">
     </el-table-column>
-    <el-table-column prop="idNumber" label="身份证号" width="200">
+    <el-table-column prop="credit_cards" label="持卡数量" width="200">
     </el-table-column>
-    <el-table-column prop="jobNumber" label="工号" width="120">
+    <el-table-column prop="area" label="办卡地区(中国范围)" width="120">
     </el-table-column>
-    <el-table-column prop="position" label="职务" width="100">
+    <el-table-column prop="consumption_area" label="消费省份" width="100">
     </el-table-column>
-    <el-table-column prop="phone" label="电话" width="120">
+    <el-table-column prop="consumption_amount" label="消费金额" width="120">
     </el-table-column>
-    <el-table-column prop="email" label="邮箱" width="200">
+    <el-table-column prop="pay_method" label="支付方式" width="200">
     </el-table-column>
-    <el-table-column prop="authority" label="权限" width="200">
+    <el-table-column prop="pay_time" label="支付时间" width="200">
+    </el-table-column>
+    <el-table-column prop="commodity_category" label="商品类别" width="100">
     </el-table-column>
     <el-table-column fixed="right" label="操作" width="100">
       <template slot-scope="scope">
@@ -70,48 +72,100 @@
         tableData: [{
           id: '165465',
           name: '周杰伦',
-          gender: '男',
+          sex: '男',
           age: '43',
-          idNumber: '4531313541321333',
-          jobNumber: '19790118',
-          position:'总经理',
-          phone:'15545621548',
-          email:'905843@163.com',
-          authority:'S'
+          credit_cards: '4531313541321333',
+          area: '19790118',
+          consumption_area:'总经理',
+          consumption_amount:'15545621548',
+          pay_method:'905843@163.com',
+          pay_time:'S',
+          commodity_category:'文体用品'
         }, {
           id: '465131',
           name: '林俊杰',
-          gender: '男',
+          sex: '男',
           age: '42',
-          idNumber: '4123134631321313',
-          jobNumber: '200333',
-          position:'业务经理',
-          phone:'18615165215',
-          email:'121513@163.com',
-          authority:'A',
+          credit_cards: '4123134631321313',
+          area: '200333',
+          consumption_area:'业务经理',
+          consumption_amount:'18615165215',
+          pay_method:'121513@163.com',
+          pay_time:'A',
+          commodity_category:'文体用品'
         }, {
           id: '264641',
           name: '陶喆',
-          gender: '男',
+          sex: '男',
           age: '48',
-          idNumber: '4324335133513135',
-          jobNumber: '200333',
-          position:'销售经理',
-          phone:'16545654565',
-          email:'461561@qq.com',
-          authority:'S'
+          credit_cards: '4324335133513135',
+          area: '200333',
+          consumption_area:'销售经理',
+          consumption_amount:'16545654565',
+          pay_method:'461561@qq.com',
+          pay_time:'S',
+          commodity_category:'文体用品'
         }, {
           id: '165484',
           name: '蔡依林',
-          gender: '女',
+          sex: '女',
           age: '38',
-          idNumber: '4231321313513213',
-          jobNumber: '200333',
-          position:'柜员',
-          phone:'15545621548',
-          email:'121513@163.com',
-          authority:'B'
-        }]
+          credit_cards: '4231321313513213',
+          area: '200333',
+          consumption_area:'柜员',
+          consumption_amount:'15545621548',
+          pay_method:'121513@qq.com',
+          pay_time:'B',
+          commodity_category:'文体用品'
+        }, {
+          id: '165791',
+          name: '罗大佑',
+          sex: '男',
+          age: '67',
+          credit_cards: '4531354313313213',
+          area: '19790118',
+          consumption_area:'柜员',
+          consumption_amount:'15545621548',
+          pay_method:'964321@163.com',
+          pay_time:'B',
+          commodity_category:'文体用品'
+        }, {
+          id: '165760',
+          name: '张学友',
+          sex: '男',
+          age: '60',
+          credit_cards: '4535231311334138',
+          area: '19790118',
+          consumption_area:'项目经理',
+          consumption_amount:'15545621548',
+          pay_method:'6547913@qq.com',
+          pay_time:'S',
+          commodity_category:'文体用品'
+        }, {
+          id: '249637',
+          name: '梁静茹',
+          sex: '女',
+          age: '44',
+          credit_cards: '4313553141321337',
+          area: '200333',
+          consumption_area:'资深员工',
+          consumption_amount:'15545621548',
+          pay_method:'149876@qq.com',
+          pay_time:'A',
+          commodity_category:'文体用品'
+        }, {
+          id: '497135',
+          name: '邓紫棋',
+          sex: '女',
+          age: '30',
+          credit_cards: '4553131354531049',
+          area: '19790118',
+          consumption_area:'资深员工',
+          consumption_amount:'15545621548',
+          pay_method:'921053@163.com',
+          pay_time:'A',
+          commodity_category:'文体用品'
+        }, ]
       }
     }
   }
