@@ -159,7 +159,7 @@ export default {
         }
       },
       visualMap: {    //滚动筛选图例工具
-        show: true,
+        show: true,   //图注
         min: 0,
         max: 200,
         left: 'left',
@@ -176,7 +176,10 @@ export default {
         roam: true,
         label: {
           normal: {
-            show: false   //未选中状态下不显示默认省份文本
+            //show: false   //未选中状态下不显示默认省份文本
+            show: true,
+      fontSize: "10",
+      color: "#fff",
           },
           emphasis: {
             show: false   //选中状态下不显示默认省份文本
@@ -200,9 +203,9 @@ export default {
           symbolSize: 5,
           label: {
             normal: {
-              formatter: '{b}',   //白色省份文本标记
+              //formatter: '{b}',   //白色省份文本标记
               position: 'right',
-              show: true
+              show: false
             },
             emphasis: {     //点击之后红色省份文本
               show: true
