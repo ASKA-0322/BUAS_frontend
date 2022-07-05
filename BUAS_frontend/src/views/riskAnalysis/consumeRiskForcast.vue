@@ -1,12 +1,9 @@
 <template>
-
   <div class="app-container" id="main">
-    用户性别聚合分析
+    消费风险分析
   </div>
-
 </template>
-
- <script>
+<script>
 
     // 引入 echarts 核心模块，核心模块提供了 echarts 使用必须要的接口。
     import * as echarts from 'echarts/core';
@@ -24,6 +21,7 @@
     import { LabelLayout, UniversalTransition } from 'echarts/features';
     // 引入 Canvas 渲染器，注意引入 CanvasRenderer 或者 SVGRenderer 是必须的一步
     import { CanvasRenderer } from 'echarts/renderers';
+
 
     export default {
       created () {
@@ -46,21 +44,42 @@
         // 初始化图表，设置配置项
         var myChart = echarts.init(document.getElementById('main'));
         let option ={
-           title: {
-          text: "消费风险预测",
+          title: {
+          text: "消费风险分析",
           left: "center"
         },
-          xAxis: {
-          type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        tooltip: {      //图例提示组件
+          trigger: "item",
+          formatter: "{a} <br/>{b} : {c} ({d}%)"
         },
-        yAxis: {
-          type: 'value'
+        legend: {     //图例筛选组件 跟series配合使用 data要与series的name一致
+          orient: "vertical",
+          left: "left",
+          data: [
+            "低风险",
+            "中风险",
+            "高风险",
+          ]
         },
         series: [
           {
-            data: [150, 230, 224, 218, 135, 147, 260],
-            type: 'line'
+            name: "风险等级",
+            type: "pie",
+            roseType: 'radius',
+            radius: ["20%", "60%"],
+            center: ["50%", "60%"],
+            data: [
+              { value: 335, name: "低风险" },
+              { value: 310, name: "中风险" },
+              { value: 234, name: "高风险" },
+            ],
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: "rgba(0, 0, 0, 0.5)"
+              }
+            }
           }
         ]
         }
@@ -68,7 +87,6 @@
       },
       name: '',
     }
-
 </script>
 <style scoped>
 #main {
@@ -76,7 +94,5 @@
   margin-top: 50px;
 }
 </style>
-
-
 
 
