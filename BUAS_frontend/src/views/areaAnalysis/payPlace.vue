@@ -1,81 +1,295 @@
 <template>
-  <div class="app-container" id="main">
+  <div class="home">
+    <div style="width: 100%;height: 600%" ref="main"></div>
   </div>
 </template>
+
 <script>
-  import * as echarts from "echarts"
-  import {mapData} from "../../assets/404_images/mapData.js"
+// 引入地图的json文件
+const chinaJson = require('@/assets/china.json')
 
-  // 引入提示框，标题，直角坐标系，数据集，内置数据转换器组件，组件后缀都为 Component
-  import {
-    TitleComponent,
-    TooltipComponent,
-    GridComponent,
-    DatasetComponent,
-    TransformComponent
-  } from 'echarts/components';
-  // 标签自动布局，全局过渡动画等特性
-  import {
-    LabelLayout,
-    UniversalTransition
-  } from 'echarts/features';
-  // 引入 Canvas 渲染器，注意引入 CanvasRenderer 或者 SVGRenderer 是必须的一步
-  import {
-    CanvasRenderer
-  } from 'echarts/renderers';
+export default {
+  data () {
+    return {
+      chinachart: null
+    }
+  },
+  mounted () {
+    // 初始化echarts实例
+    this.chinachart = this.$echarts.init(this.$refs.main)
+    // 配置地图的json文件
+    this.$echarts.registerMap('china', chinaJson)
 
-  export default {
-    created() {
-      // 注册必须的组件
-      echarts.use([
-        TitleComponent,
-        PieChart,
-        TooltipComponent,
-        GridComponent,
-        DatasetComponent,
-        TransformComponent,
-        BarChart,
-        LabelLayout,
-        UniversalTransition,
-        CanvasRenderer,
-      ]);
-    },
-    mounted() {
-      let myChart = echarts.init(document.getElementById('main'));
-      //注册当前使用的地图名
-      echarts.registerMap("chinaMap", mapData)
-      let option = {
-        title: {
-          text: "支付地点分析",
-          left: "center"
-        },
-        tooltip: {
-          trigger: "item",
-          formatter: "{b}<br/>{c} "
-        },
-        visualMap: {
-          min: 0,
-          max: 100,
-          text: ['High', 'Low'],
-          calculable: true,
-          seriesIndex: [0], //这个对应的是series的数组下标
-          inRange: {
-            color: ["#00467F", "#A5CC82"]
+    var geoCoordMap = {
+      台湾: [121.5135, 25.0308],
+      黑龙江: [127.9688, 45.368],
+      内蒙古: [110.3467, 41.4899],
+      吉林: [125.8154, 44.2584],
+      北京市: [116.4551, 40.2539],
+      辽宁: [123.1238, 42.1216],
+      河北: [114.4995, 38.1006],
+      天津: [117.4219, 39.4189],
+      山西: [112.3352, 37.9413],
+      陕西: [109.1162, 34.2004],
+      甘肃: [103.5901, 36.3043],
+      宁夏: [106.3586, 38.1775],
+      青海: [101.4038, 36.8207],
+      新疆: [87.9236, 43.5883],
+      西藏: [91.11, 29.97],
+      四川: [103.9526, 30.7617],
+      重庆: [108.384366, 30.439702],
+      山东: [117.1582, 36.8701],
+      河南: [113.4668, 34.6234],
+      江苏: [118.8062, 31.9208],
+      安徽: [117.29, 32.0581],
+      湖北: [114.3896, 30.6628],
+      浙江: [119.5313, 29.8773],
+      福建: [119.4543, 25.9222],
+      江西: [116.0046, 28.6633],
+      湖南: [113.0823, 28.2568],
+      贵州: [106.6992, 26.7682],
+      云南: [102.9199, 25.4663],
+      广东: [113.12244, 23.009505],
+      广西: [108.479, 23.1152],
+      海南: [110.3893, 19.8516],
+      上海: [121.4648, 31.2891]
+
+    }
+    var data = [
+      { name: '北京', value: 199 },
+      { name: '天津', value: 42 },
+      { name: '河北', value: 102 },
+      { name: '山西', value: 81 },
+      { name: '内蒙古', value: 47 },
+      { name: '辽宁', value: 67 },
+      { name: '吉林', value: 82 },
+      { name: '黑龙江', value: 123 },
+      { name: '上海', value: 24 },
+      { name: '江苏', value: 92 },
+      { name: '浙江', value: 114 },
+      { name: '安徽', value: 109 },
+      { name: '福建', value: 116 },
+      { name: '江西', value: 91 },
+      { name: '山东', value: 119 },
+      { name: '河南', value: 137 },
+      { name: '湖北', value: 116 },
+      { name: '湖南', value: 114 },
+      { name: '重庆', value: 91 },
+      { name: '四川', value: 125 },
+      { name: '贵州', value: 62 },
+      { name: '云南', value: 83 },
+      { name: '西藏', value: 9 },
+      { name: '陕西', value: 80 },
+      { name: '甘肃', value: 56 },
+      { name: '青海', value: 10 },
+      { name: '宁夏', value: 18 },
+      { name: '新疆', value: 180 },
+      { name: '广东', value: 123 },
+      { name: '广西', value: 59 },
+      { name: '海南', value: 14 }
+    ]
+
+    var convertData = function (data) {
+      var res = []
+      for (var i = 0; i < data.length; i++) {
+        var geoCoord = geoCoordMap[data[i].name]
+        if (geoCoord) {
+          res.push({
+            name: data[i].name,
+            value: geoCoord.concat(data[i].value)
+          })
+        }
+      }
+      return res
+    }
+    // 配置参数
+    const option = {
+      backgroundColor: {
+        type: 'linear',
+        x: 0,
+        y: 0,
+        x2: 1,
+        y2: 1,
+        colorStops: [{
+          offset: 0, color: '#0f378f' // 0% 处的颜色
+        }, {
+          offset: 1, color: '#00091a' // 100% 处的颜色
+        }],
+        globalCoord: false // 缺省为 false
+      },
+      title: {
+        top: 20,
+        text: '全国支付地点图示',
+        subtext: '',
+        x: 'center',
+        textStyle: {
+          color: '#ccc'
+        }
+      },
+
+      tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+          if (typeof (params.value)[2] === 'undefined') {
+            return params.name + ' : ' + params.value
+          } else {
+            return params.name + ' : ' + params.value[2]
+          }
+        }
+      },
+      /*   legend: {
+            orient: 'vertical',
+            y: 'bottom',
+            x: 'right',
+             data:['pm2.5'],
+            textStyle: {
+                color: '#fff'
+            }
+        }, */
+      legend: {
+        orient: 'vertical',
+        y: 'bottom',
+        x: 'right',
+        data: ['pm2.5'],
+        textStyle: {
+          color: '#fff'
+        }
+      },
+      visualMap: {
+        show: false,
+        min: 0,
+        max: 500,
+        left: 'left',
+        top: 'bottom',
+        text: ['高', '低'], // 文本，默认为数值文本
+        calculable: true,
+        seriesIndex: [1],
+        inRange: {
+
+        }
+      },
+      geo: {
+        map: 'china',
+        show: true,
+        roam: true,
+        label: {
+          normal: {
+            show: false
+          },
+          emphasis: {
+            show: false
           }
         },
-        geo: { //地理坐标组件
-          show: true,
-          type: "map",
-          map: "chinaMap"
+        itemStyle: {
+          normal: {
+            areaColor: '#3a7fd5',
+            borderColor: '#0a53e9', // 线
+            shadowColor: '#092f8f', // 外发光
+            shadowBlur: 20
+          },
+          emphasis: {
+            areaColor: '#0a2dae' // 悬浮区背景
+          }
         }
-      };
-      myChart.setOption(option);
-    },
-  };
-</script>
-<style scoped>
-  #main {
-    height: 700px;
-    margin-top: 50px;
+      },
+      series: [
+        {
+
+          symbolSize: 5,
+          label: {
+            normal: {
+              formatter: '{b}',
+              position: 'right',
+              show: true
+            },
+            emphasis: {
+              show: true
+            }
+          },
+          itemStyle: {
+            normal: {
+              color: '#fff'
+            }
+          },
+          name: 'light',
+          type: 'scatter',
+          coordinateSystem: 'geo',
+          data: convertData(data)
+
+        },
+        {
+          type: 'map',
+          map: 'china',
+          geoIndex: 0,
+          aspectScale: 0.75, // 长宽比
+          showLegendSymbol: false, // 存在legend时显示
+          label: {
+            normal: {
+              show: false
+            },
+            emphasis: {
+              show: false,
+              textStyle: {
+                color: '#fff'
+              }
+            }
+          },
+          roam: true,
+          itemStyle: {
+            normal: {
+              areaColor: '#031525',
+              borderColor: '#FFFFFF'
+            },
+            emphasis: {
+              areaColor: '#2B91B7'
+            }
+          },
+          animation: false,
+          data: data
+        },
+        {
+          name: 'Top 5',
+          type: 'scatter',
+          coordinateSystem: 'geo',
+          symbol: 'pin',
+          symbolSize: [50, 50],
+          label: {
+            normal: {
+              show: true,
+              textStyle: {
+                color: '#fff',
+                fontSize: 9
+              },
+              formatter (value) {
+                return value.data.value[2]
+              }
+            }
+          },
+          itemStyle: {
+            normal: {
+              color: '#D8BC37' // 标志颜色
+            }
+          },
+          data: convertData(data),
+          showEffectOn: 'render',
+          rippleEffect: {
+            brushType: 'stroke'
+          },
+          hoverAnimation: true,
+          zlevel: 1
+        }
+
+      ]
+    }
+    // 传入数据
+    this.chinachart.setOption(option)
   }
+}
+</script>
+
+<style>
+.home{
+  height: 1000;
+  width: 100%;
+}
 </style>

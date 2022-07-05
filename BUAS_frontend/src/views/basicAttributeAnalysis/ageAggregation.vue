@@ -46,54 +46,51 @@
         // 初始化图表，设置配置项
         var myChart = echarts.init(document.getElementById('main'));
         let option ={
-          title: {
-          text: "用户年龄聚合分析",
-          left: "center"
-        },
-        tooltip: {      //图例提示组件
-          trigger: "item",
-          formatter: "{a} <br/>{b} : {c} ({d}%)"
-        },
-        legend: {     //图例筛选组件 跟series配合使用 data要与series的name一致
-          orient: "vertical",
-          left: "left",
-          data: [
-            "0~9岁",
-            "10~19岁",
-            "20~29岁",
-            "30~39岁",
-            "40~49岁",
-            "50~59岁",
-            "60岁及以上",
-          ]
-        },
-        series: [
-          {
-            name: "用户年龄",
-            type: "pie",
-            radius: [30, 200],
-            center: ["50%", "60%"],
-            itemStyle: {
-              borderRadius: 5
+            title: {
+              text: "用户年龄聚合分析",
+              left: "center"
             },
-            data: [
-              { value: 299, name: "0~9岁" },
-              { value: 520, name: "10~19岁" },
-              { value: 865, name: "20~29岁" },
-              { value: 1024, name: "30~39岁" },
-              { value: 965, name: "40~49岁" },
-              { value: 733, name: "50~59岁" },
-              { value: 349, name: "60岁及以上" }
-            ],
-            emphasis: {
-              itemStyle: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: "rgba(0, 0, 0, 0.5)"
+            tooltip: {      //图例提示组件
+              trigger: "axis",
+              formatter: "{a} <br/>{b} : {c} "
+            },
+            xAxis: {
+              type: 'category',
+              data: ['20岁以下', '20-30岁', '30-40岁', '40-50岁', '50-60岁', '60岁以上']
+            },
+            yAxis: {
+              type: 'value'
+            },
+            series: [
+              {
+                name: "用户年龄",
+                type: 'bar',
+                data: [
+                  { value: 235, name: "20岁以下" },
+                  { value: 861, name: "20-30岁" },
+                  { value: 1024, name: "30-40岁" },
+                  { value: 599, name: "40-50岁" },
+                  { value: 432, name: "50-60岁" },
+                  { value: 384, name: "60岁以上" }
+                ],
+                itemStyle: {
+                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                    { offset: 0, color: '#83bff6' },
+                    { offset: 0.5, color: '#188df0' },
+                    { offset: 1, color: '#188df0' }
+                  ])
+                },
+                emphasis: {
+                  itemStyle: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                      { offset: 0, color: '#2378f7' },
+                      { offset: 0.7, color: '#2378f7' },
+                      { offset: 1, color: '#83bff6' }
+                    ])
+                  }
+                },
               }
-            }
-          }
-        ]
+            ]
         }
         myChart.setOption(option);    //调用工具
       },
