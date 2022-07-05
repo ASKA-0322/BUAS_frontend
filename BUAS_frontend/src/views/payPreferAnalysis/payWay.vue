@@ -61,6 +61,7 @@
             "微信",
             "支付宝",
             "现金",
+            "信用卡",
             "其他方式"
           ]
         },
@@ -68,12 +69,13 @@
           {
             name: "支付方式",
             type: "pie",
-            radius: ['40%', '70%'],
+            radius: ['70%'],
             center: ["50%", "60%"],
             data: [
               { value: 16532, name: "微信" },
               { value: 13024, name: "支付宝" },
               { value: 1532, name: "现金" },
+              { value: 5780, name: "信用卡" },
               { value: 7024, name: "其他方式" },
             ],
             avoidLabelOverlap: false,

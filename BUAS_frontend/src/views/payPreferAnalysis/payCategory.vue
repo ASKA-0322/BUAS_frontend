@@ -47,7 +47,8 @@
         var myChart = echarts.init(document.getElementById('main'));
         let option = {
   title: {
-    text: '商品类别'
+    text: '商品类别',
+    left: "center"
   },
   tooltip: {
     trigger: 'axis',
@@ -81,7 +82,6 @@
   },
   yAxis: {
     type: 'category',
-    name:'class',
     data: ["服装鞋帽",
             "日用百货",
             "数码产品及其配件",
