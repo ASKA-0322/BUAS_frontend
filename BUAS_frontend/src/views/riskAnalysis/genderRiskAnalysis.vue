@@ -43,6 +43,30 @@
       mounted () {
         // 初始化图表，设置配置项
         var myChart = echarts.init(document.getElementById('main'));
+        const itemStylelow = {
+          color:'#f5c7c7',
+          opacity: 0.8,
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowOffsetY: 0,
+          shadowColor: 'rgba(0,0,0,0.1)'
+        };
+        const itemStylemid = {
+          color:'#eb8f8f',
+          opacity: 0.8,
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowOffsetY: 0,
+          shadowColor: 'rgba(0,0,0,0.5)'
+        };
+        const itemStylehigh = {
+          color:'#dd4444',
+          opacity: 0.8,
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowOffsetY: 0,
+          shadowColor: 'rgba(0,0,0,0.9)'
+        };
         let option =
         {
           grid:{
@@ -72,7 +96,10 @@
           },
           xAxis: { type: 'category' },
           yAxis: {},
-          series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
+          series: [
+            { type: 'bar' ,itemStyle: itemStylelow,},
+            { type: 'bar' ,itemStyle: itemStylemid,},
+            { type: 'bar' ,itemStyle: itemStylehigh,}]
         };
         myChart.setOption(option);    //调用工具
       },
