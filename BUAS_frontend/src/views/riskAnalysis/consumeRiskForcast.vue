@@ -1,6 +1,5 @@
 <template>
-
-  <div class="app-container" id="main">
+<div class="app-container" id="main">
     用户年龄聚合分析
   </div>
 
@@ -79,14 +78,11 @@ option = {
   },
   name: '',
 }
-
 </script>
 <style scoped>
 #main {
   height: 600px;
   margin-top: 50px;
-
   width: 700px;
 }
 </style>
-
