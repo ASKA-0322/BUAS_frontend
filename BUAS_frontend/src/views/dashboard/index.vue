@@ -1,7 +1,10 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text">name:{{ name }}</div>
-    <div class="dashboard-text">roles:<span v-for="role in roles" :key="role">{{ role }}</span></div>
+    <div>图片</div>
+    <div class="dashboard-bottomText">
+      <p style="line-height: 5px;">Copyright © 2022 Bank Inc. 保留所有权利。</p>
+      <p style="line-height: 5px;">京ICP备10214630 营业执照 无线电发射设备销售备案编号11201910351200</p>
+    </div>
   </div>
 </template>
 
@@ -9,13 +12,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'Dashboard',
-  computed: {
-    ...mapGetters([
-      'name',
-      'roles'
-    ])
-  }
+
 }
 </script>
 
@@ -24,9 +21,14 @@ export default {
   &-container {
     margin: 30px;
   }
-  &-text {
-    font-size: 30px;
+  &-bottomText {
+    width: 100%;
+    height: 100%;
+    color:  #6E6E73;
+    font-size: 10px;
     line-height: 46px;
+    margin-top: 650px;
+    text-align: center;
   }
 }
 </style>
