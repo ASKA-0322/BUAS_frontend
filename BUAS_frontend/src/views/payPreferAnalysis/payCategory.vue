@@ -1,7 +1,10 @@
 <template>
 
-  <div class="app-container" id="main">
-    消费类别分析
+  <div class="app-container" id="main">HEAD
+    用户年龄聚合分析
+=======
+    用户性别聚合分析
+>>>>>>> f930d83a3e92a99d71bc51f9030eca84d4d8972f
   </div>
 
 </template>
@@ -81,7 +84,6 @@
   },
   yAxis: {
     type: 'category',
-    name:'class',
     data: ["服装鞋帽",
             "日用百货",
             "数码产品及其配件",
@@ -105,9 +107,7 @@
               { value: 200405, name: "家用电器" },
               { value: 191214, name: "食品、保健品" },
               { value: 210715, name: "文体用品" }]
-    }
-  ]
-};
+  },]}
         myChart.setOption(option);    //调用工具
       },
       name: '',

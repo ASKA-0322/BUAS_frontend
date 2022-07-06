@@ -58,10 +58,10 @@
           orient: "vertical",
           left: "left",
           data: [
-            "微信",
-            "支付宝",
-            "现金",
-            "其他方式"
+            "网上银行",
+            "电子支票",
+            "银行卡支付",
+            "第三方平台(支付宝、微信)"
           ]
         },
         series: [
@@ -71,10 +71,10 @@
             radius: ['40%', '70%'],
             center: ["50%", "60%"],
             data: [
-              { value: 16532, name: "微信" },
-              { value: 13024, name: "支付宝" },
-              { value: 1532, name: "现金" },
-              { value: 7024, name: "其他方式" },
+              { value: 16532, name: "网上银行" },
+              { value: 13024, name: "电子支票" },
+              { value: 1532, name: "银行卡支付" },
+              { value: 7024, name: "第三方平台(支付宝、微信)" },
             ],
             avoidLabelOverlap: false,
             itemStyle: {
