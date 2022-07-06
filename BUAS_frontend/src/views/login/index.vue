@@ -6,7 +6,7 @@
         <span class="svg-container">
           <svg-icon icon-class="user" />
         </span>
-        <el-input v-model="loginForm.username" name="username" type="text" auto-complete="on" placeholder="username" />
+        <el-input v-model="loginForm.username" name="username" type="text" auto-complete="on" placeholder="用户名" />
       </el-form-item>
       <el-form-item prop="password">
         <span class="svg-container">
@@ -29,7 +29,7 @@
         </el-button>
       </el-form-item>
        <el-form-item>
-        <el-button :loading="loading" type="primary" style="width:100%;" @click="getTwoDimensional()">
+        <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleLoginUser">
           用户登录
         </el-button>
       </el-form-item>
@@ -92,6 +92,22 @@ export default {
       }
     },
     handleLogin() {
+      this.$refs.loginForm.validate(valid => {
+        if (valid) {
+          this.loading = true
+          this.$store.dispatch('Login', this.loginForm).then(() => {
+            this.loading = false
+            this.$router.push({ path: this.redirect || '/' })
+          }).catch(() => {
+            this.loading = false
+          })
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
+    },
+     handleLoginUser() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
