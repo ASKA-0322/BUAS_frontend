@@ -17,7 +17,7 @@
           v-model="loginForm.password"
           name="password"
           auto-complete="on"
-          placeholder="password"
+          placeholder="密码"
           @keyup.enter.native="handleLogin" />
         <span class="show-pwd" @click="showPwd">
           <svg-icon icon-class="eye" />
@@ -25,7 +25,12 @@
       </el-form-item>
       <el-form-item>
         <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleLogin">
-          Sign in
+          管理员登录
+        </el-button>
+      </el-form-item>
+       <el-form-item>
+        <el-button :loading="loading" type="primary" style="width:100%;" @click="getTwoDimensional()">
+          用户登录
         </el-button>
       </el-form-item>
       <div class="tips">
@@ -112,10 +117,14 @@ $light_gray:#eee;
 
 /* reset element-ui css */
 .login-container {
+  background-image: url("../../assets/login1.png");
+   background-size: cover;
+  background-position: center;
   .el-input {
     display: inline-block;
     height: 47px;
     width: 85%;
+
     input {
       background: transparent;
       border: 0px;
