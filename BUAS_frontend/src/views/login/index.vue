@@ -29,9 +29,10 @@
         </el-button>
       </el-form-item>
        <el-form-item>
-        <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleLoginUser">
+        <!-- <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleLoginUser">
           用户登录
-        </el-button>
+        </el-button> -->
+        <el-button type="primary" style="width:100%" @click="userClick">用户登录</el-button>
       </el-form-item>
       <div class="tips">
         <span style="margin-right:20px;">username: admin</span>
@@ -122,6 +123,9 @@ export default {
           return false
         }
       })
+    },
+     userClick () {
+      window.location.href = 'http://localhost:9527'
     }
   }
 }
@@ -133,9 +137,6 @@ $light_gray:#eee;
 
 /* reset element-ui css */
 .login-container {
-  background-image: url("../../assets/login1.png");
-   background-size: cover;
-  background-position: center;
   .el-input {
     display: inline-block;
     height: 47px;
