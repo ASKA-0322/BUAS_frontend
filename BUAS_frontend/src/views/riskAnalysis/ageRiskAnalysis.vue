@@ -47,8 +47,10 @@
       [18, 98],
       [30, 34],
       [22, 49],
-
-    ];
+      [24, 46],
+      [65, 73],
+      [44, 30],
+    ];//年龄风险程度数据
 
 const schema = [
   { name: 'age', index: 0, text: '年龄' },
@@ -61,30 +63,97 @@ const itemStyle = {
   shadowOffsetY: 0,
   shadowColor: 'rgba(0,0,0,0.3)'
 };
+const itemStylelow = {
+  color:'#f5c7c7',
+  opacity: 0.8,
+  shadowBlur: 10,
+  shadowOffsetX: 0,
+  shadowOffsetY: 0,
+  shadowColor: 'rgba(0,0,0,0.1)'
+};
+const itemStylemid = {
+  color:'#eb8f8f',
+  opacity: 0.8,
+  shadowBlur: 10,
+  shadowOffsetX: 0,
+  shadowOffsetY: 0,
+  shadowColor: 'rgba(0,0,0,0.5)'
+};
+const itemStylehigh = {
+  color:'#dd4444',
+  opacity: 0.8,
+  shadowBlur: 10,
+  shadowOffsetX: 0,
+  shadowOffsetY: 0,
+  shadowColor: 'rgba(0,0,0,0.9)'
+};
      let option = {
-
+      title: {
+        text: "风险年龄分析",
+        left: 'center',
+        top: 0
+      },
        color: ['#dd4444'],
-       grid: {
-         left: '10%',
-         right: 150,
+       legend: {
+            orient: "vertical",
+            left: "right",
+            top:"10%",
+            data: [
+              "低风险",
+              "中风险",
+              "高风险",
+            ]
+          },
+        tooltip: {},
+       dataset: {
+          source: [
+            ['sex', '低风险', '中风险', '高风险'],
+            ['18~30', 3215, 8518, 9317],
+            ['30~40', 8351, 7314, 5511],
+            ['40~50', 8624, 6512, 8215],
+            ['50~60', 7214, 5319, 3911],
+            ['60~70', 8614, 6512, 8215],
+            ['70~80', 7214, 5319, 3911],
+          ]//各年龄段三个风险等级数据
+        },
+       grid: [{
+         left: '5%',
          top: '18%',
-         bottom: '10%'
+         width: '35%',
+         bottom: '15%'
        },
-
-       xAxis: {
+       {
+        right: '5%',
+         top: '18%',
+         width: '40%',
+         bottom: '15%'
+      },
+      ],
+       xAxis: [{
          type: 'value',
          name: '年龄',
          nameGap: 10,
          nameTextStyle: {
-           fontSize: 16
+           fontSize: 13
          },
+         gridIndex: 0,
          min:10,
-         max: 90,
+         max: 80,
          splitLine: {
            show: false
          }
        },
-       yAxis: {
+        {
+          name: '年龄段',
+          nameGap: 10,
+         nameTextStyle: {
+           fontSize: 13
+         },
+          type: 'category',
+          gridIndex: 1,
+        },
+       ],
+       yAxis: [{
          type: 'value',
          name: '风险程度',
          nameLocation: 'end',
@@ -94,20 +163,32 @@ const itemStyle = {
          },
          min:10,
          max:100,
-
+         gridIndex:0,
          splitLine: {
            show: false
          }
        },
+       {
+        name: '人数',
+        nameLocation: 'end',
+         nameGap: 10,
+         nameTextStyle: {
+           fontSize: 16
+         },
+        gridIndex: 1,
+       },
+       ],
        visualMap: [
          {
+
           show:true,
-           left: 'right',
-           bottom: '10%',
+           left: '42%',
+           top:'12.5%',
            dimension: 1,
            min: 10,
            max: 100,
-           itemHeight: 300,
+           itemHeight: 380,
+           seriesIndex: 0,
            text: ['明暗：风险程度'],
            textGap: 10,
            inRange: {
@@ -128,17 +209,36 @@ const itemStyle = {
        ],
        series: [
          {
-           name: '北京',
+           name: '风险指数',
            type: 'scatter',
+           xAxisIndex: 0,
+           yAxisIndex: 0,
            itemStyle: itemStyle,
            data: dataBJ
          },
-
+         {
+           name: '低风险',
+           type: 'bar',
+           itemStyle: itemStylelow,
+           xAxisIndex: 1,
+           yAxisIndex: 1,
+         },
+         {
+           name: '中风险',
+           type: 'bar',
+           itemStyle: itemStylemid,
+           xAxisIndex: 1,
+           yAxisIndex: 1,
+         },
+         {
+           name: '高风险',
+           type: 'bar',
+           itemStyle: itemStylehigh,
+           xAxisIndex: 1,
+           yAxisIndex: 1,
+         },
        ]
-
      }
-    //  let option2={
-    //  }
      myChart.setOption(option);    //调用工具
    },
    name: '',
@@ -149,7 +249,7 @@ const itemStyle = {
 #main {
   height: 600px;
   margin-top: 50px;
-  width: 700px;
+  width: auto;
 }
 </style>
 
