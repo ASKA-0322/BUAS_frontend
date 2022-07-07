@@ -7,7 +7,8 @@
 </template>
 
  <script>
-
+    //引入axios
+    import axios from 'axios';
     // 引入 echarts 核心模块，核心模块提供了 echarts 使用必须要的接口。
     import * as echarts from 'echarts/core';
     // 引入饼图图表，图表后缀都为 Chart
@@ -42,7 +43,13 @@
         ]);
 
       },
-      mounted () {
+      mounted () {//钩子函数，用于页面渲染之后处理数据
+        axios.get('http://172.20.10.4:8081/pay-prefer/pay-way').then(function(response){
+            var value =response.data    //用value获取响应数据
+            console.log(value)
+            get_payway(value)         //调用后端数据配置图表的函数
+        })
+        function get_payway(value){   //传入value
         // 初始化图表，设置配置项
         var myChart = echarts.init(document.getElementById('main'));
         let option ={
@@ -58,10 +65,10 @@
           orient: "vertical",
           left: "left",
           data: [
-            "网上银行",
             "电子支票",
+            "第三方平台(支付宝、微信)",
+            "网上银行",
             "银行卡支付",
-            "第三方平台(支付宝、微信)"
           ]
         },
         series: [
@@ -71,10 +78,10 @@
             radius: ['70%'],
             center: ["50%", "60%"],
             data: [
-              { value: 16532, name: "网上银行" },
-              { value: 13024, name: "电子支票" },
-              { value: 1532, name: "银行卡支付" },
-              { value: 7024, name: "第三方平台(支付宝、微信)" },
+              { value: value.data[0].amount, name: value.data[0].payMethod },
+              { value: value.data[1].amount, name: value.data[1].payMethod },
+              { value: value.data[2].amount, name: value.data[2].payMethod },
+              { value: value.data[3].amount, name: value.data[3].payMethod },
             ],
             avoidLabelOverlap: false,
             itemStyle: {
@@ -102,6 +109,7 @@
         ]
         }
         myChart.setOption(option);    //调用工具
+        }
       },
       name: '',
     }

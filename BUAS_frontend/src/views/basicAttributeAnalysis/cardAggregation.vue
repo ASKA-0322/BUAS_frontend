@@ -7,7 +7,8 @@
 </template>
 
  <script>
-
+    //引入axios
+    import axios from 'axios';
     // 引入 echarts 核心模块，核心模块提供了 echarts 使用必须要的接口。
     import * as echarts from 'echarts/core';
     // 引入饼图图表，图表后缀都为 Chart
@@ -42,7 +43,13 @@
         ]);
 
       },
-      mounted () {
+      mounted () {   //钩子函数 用于页面渲染之后处理数据
+        axios.get('http://172.20.10.4:8081/base/cards/').then(function(response){
+            var value =response.data    //用value获取响应数据
+            console.log(value)
+            get_cards(value)         //调用后端数据配置图表的函数
+        })
+        function get_cards(value){   //传入value
         // 初始化图表，设置配置项
         var myChart = echarts.init(document.getElementById('main'));
         let option ={
@@ -58,13 +65,17 @@
           orient: "vertical",
           left: "left",
           data: [
-            "一张",
-            "两张",
-            "三张",
-            "四张",
-            "五张",
-            "六张",
-            "七张及以上"
+            "1张",
+            "2张",
+            "3张",
+            "4张",
+            "5张",
+            "6张",
+            "7张",
+            "8张",
+            "9张",
+            "10张",
+            "10张以上"
           ]
         },
         series: [
@@ -78,13 +89,17 @@
               borderRadius: 5
             },
             data: [
-              { value: 865, name: "一张" },
-              { value: 965, name: "两张" },
-              { value: 1024, name: "三张" },
-              { value: 733, name: "四张" },
-              { value: 520, name: "五张" },
-              { value: 349, name: "六张" },
-              { value: 299, name: "七张及以上" }
+              { value: value.data[10].amount, name: value.data[10].cards },
+              { value: value.data[2].amount, name: value.data[2].cards },
+              { value: value.data[3].amount, name: value.data[3].cards },
+              { value: value.data[4].amount, name: value.data[4].cards },
+              { value: value.data[5].amount, name: value.data[5].cards },
+              { value: value.data[6].amount, name: value.data[6].cards },
+              { value: value.data[7].amount, name: value.data[7].cards },
+              { value: value.data[8].amount, name: value.data[8].cards },
+              { value: value.data[9].amount, name: value.data[9].cards },
+              { value: value.data[0].amount, name: value.data[0].cards },
+              { value: value.data[1].amount, name: value.data[1].cards },
             ],
             emphasis: {
               itemStyle: {
@@ -97,6 +112,7 @@
         ]
         }
         myChart.setOption(option);    //调用工具
+        }
       },
       name: '',
     }
