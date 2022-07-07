@@ -54,23 +54,27 @@
   :total="100"
   style="padding: 30px 0; text-align: center;"
   layout="total, prev, pager, next, jumper"
-  @current-change="fetchData" /><!-- layout为分页属性：总数、上一页、页码、下一页、跳转 -->
+  @current-change="postUserList" /><!-- layout为分页属性：总数、上一页、页码、下一页、跳转 -->
 
 </div>
 </template>
 
 <script>
+//引入axios
+import axios from 'axios';
 import { number } from 'echarts/core';
-import Axios from 'axios';
   export default {
-    props:{
-      total:{
-        type:Number,
-        default:100
-      },
-      pageSize:{
-        type:Number
-      }
+    created(){
+      this.getList();
+      this.postUserList();
+
+    },
+    mounted () {
+       axios.get('http://172.20.10.4:8081/user/uid/62280507').then(function(response){
+            var value =response.data    //用value获取响应数据
+            console.log(value)
+            get_gender(value)         //调用后端数据配置图表的函数
+        })
     },
     methods: {
       handleClick(row) {
@@ -78,8 +82,11 @@ import Axios from 'axios';
       },
       getList(){
 
+      },
+      //列表渲染方法
+    postUserList(page = 1) {
 
-      }
+    },
     },
     data() {
       return {
@@ -88,13 +95,10 @@ import Axios from 'axios';
         page: 1, //当前页
         limit: 10, //每页显示的记录数
         total: 100, //总记录数
-        sizer: {},//
         userList:{},
         year: [],
 
-
-
-       /*  tableData: [{
+        tableData: [{
           id: '165465',
           name: '周杰伦',
           sex: '男',
@@ -190,7 +194,7 @@ import Axios from 'axios';
           pay_method:'921053@163.com',
           pay_time:'A',
           commodity_category:'文体用品'
-        }, ] */
+        }, ]
       }
     }
   }
