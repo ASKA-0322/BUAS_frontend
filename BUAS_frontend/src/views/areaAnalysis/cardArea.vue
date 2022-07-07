@@ -1,297 +1,320 @@
+
 <template>
-  <div class="home">
-    <div style="width: 100%;height: 600%" ref="main"></div>
+  <div>
+    <!-- 专利国内分布图 -->
+    <div id="cmap" class="chart-container" style="width:1280px; height:768px;margin:auto;top:80px;"></div>
+    <div style="height:78px"></div>
   </div>
 </template>
-
 <script>
-import { color } from 'echarts/core'
-// 引入地图的json文件
-const chinaJson = require('@/assets/china.json')
+import * as echarts from "echarts";
+import 'echarts/map/js/china.js';
 
 export default {
-  data () {
+  components: {
+ },
+  name: '',
+  data() {
     return {
-      chinachart: null
+    option1 : {
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "color": [
+        "#008B8B"
+    ],
+    "series": [
+        {
+            "type": "map",
+            "name": "\u4e13\u5229\u6570",
+            "label": {
+                "show": true,
+                "position": "inside",
+                "distance": "inside",
+                "margin": 8,
+                "fontSize": 16,
+                "fontStyle": "normal"
+            },
+            "mapType": "china",
+            "data": [
+                {
+                    "name": "\u5317\u4eac",
+                    "value": "19902"
+                },
+                {
+                    "name": "\u5e7f\u4e1c",
+                    "value": "16610"
+                },
+                {
+                    "name": "\u6c5f\u82cf",
+                    "value": "10997"
+                },
+                {
+                    "name": "\u6d59\u6c5f",
+                    "value": "7673"
+                },
+                {
+                    "name": "\u4e0a\u6d77",
+                    "value": "7295"
+                },
+                {
+                    "name": "\u56db\u5ddd",
+                    "value": "4513"
+                },
+                {
+                    "name": "\u9655\u897f",
+                    "value": "4062"
+                },
+                {
+                    "name": "\u6e56\u5317",
+                    "value": "3826"
+                },
+                {
+                    "name": "\u5c71\u4e1c",
+                    "value": "3759"
+                },
+                {
+                    "name": "\u5929\u6d25",
+                    "value": "2514"
+                },
+                {
+                    "name": "\u5b89\u5fbd",
+                    "value": "2340"
+                },
+                {
+                    "name": "\u91cd\u5e86",
+                    "value": "2327"
+                },
+                {
+                    "name": "\u6e56\u5357",
+                    "value": "2265"
+                },
+                {
+                    "name": "\u8fbd\u5b81",
+                    "value": "2260"
+                },
+                {
+                    "name": "\u798f\u5efa",
+                    "value": "2180"
+                },
+                {
+                    "name": "\u9ed1\u9f99\u6c5f",
+                    "value": "1592"
+                },
+                {
+                    "name": "\u6cb3\u5357",
+                    "value": "1298"
+                },
+                {
+                    "name": "\u6cb3\u5317",
+                    "value": "833"
+                },
+                {
+                    "name": "\u5e7f\u897f",
+                    "value": "768"
+                },
+                {
+                    "name": "\u5409\u6797",
+                    "value": "734"
+                },
+                {
+                    "name": "\u4e91\u5357",
+                    "value": "679"
+                },
+                {
+                    "name": "\u6c5f\u897f",
+                    "value": "558"
+                },
+                {
+                    "name": "\u5c71\u897f",
+                    "value": "423"
+                },
+                {
+                    "name": "\u8d35\u5dde",
+                    "value": "326"
+                },
+                {
+                    "name": "\u53f0\u6e7e",
+                    "value": "292"
+                },
+                {
+                    "name": "\u7518\u8083",
+                    "value": "197"
+                },
+                {
+                    "name": "\u5185\u8499\u53e4",
+                    "value": "182"
+                },
+                {
+                    "name": "\u65b0\u7586",
+                    "value": "137"
+                },
+                {
+                    "name": "\u9999\u6e2f",
+                    "value": "106"
+                },
+                {
+                    "name": "\u6d77\u5357",
+                    "value": "94"
+                },
+                {
+                    "name": "\u5b81\u590f",
+                    "value": "77"
+                },
+                {
+                    "name": "\u9752\u6d77",
+                    "value": "45"
+                },
+                {
+                    "name": "\u897f\u85cf",
+                    "value": "13"
+                },
+                {
+                    "name": "\u6fb3\u95e8",
+                    "value": "10"
+                }
+            ],
+            "roam": false,
+            "zoom": 1,
+            "showLegendSymbol": false,
+            "emphasis": {}
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "\u4e13\u5229\u6570"
+            ],
+            "selected": {
+                "\u4e13\u5229\u6570": true
+            },
+            "show": false,
+            "padding": 5,
+            "itemGap": 10,
+            "itemWidth": 25,
+            "itemHeight": 14,
+            "textStyle": {
+                "fontFamily": "Arial",
+                "fontSize": 20
+            }
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "showContent": true,
+        "alwaysShowContent": false,
+        "showDelay": 0,
+        "hideDelay": 100,
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0,
+        "padding": 5
+    },
+    "title": [
+        {
+            "text": "办卡地区分布图",
+            "padding": 5,
+            "itemGap": 10,
+            "textStyle": {
+                "fontFamily": "Arial",
+                "fontSize": 30
+            },
+            "subtextStyle": {
+                "fontFamily": "Arial",
+                "fontSize": 20
+            }
+        }
+    ],
+    "visualMap": {
+        "show": true,
+        "type": "piecewise",
+        "min": 0,
+        "max": 2000,
+        "inRange": {
+            "color": [
+                "#50a3ba",
+                "#eac763",
+                "#d94e5d"
+            ]
+        },
+        "calculable": true,
+        "inverse": false,
+        "splitNumber": 5,
+        "orient": "vertical",
+        "showLabel": true,
+        "itemWidth": 20,
+        "itemHeight": 14,
+        "borderWidth": 0,
+        "pieces": [
+            {
+                "max": 10,
+                "label": "10\u4ee5\u4e0b",
+                "color": "#ECF5FF"
+            },
+            {
+                "min": 10,
+                "max": 50,
+                "label": "10-100",
+                "color": "#D2E9FF"
+            },
+            {
+                "min": 50,
+                "max": 100,
+                "label": "100-200",
+                "color": "#ACD6FF"
+            },
+            {
+                "min": 100,
+                "max": 500,
+                "label": "200-500",
+                "color": "#84C1FF"
+            },
+            {
+                "min": 500,
+                "max": 1000,
+                "label": "500-100",
+                "color": "#46A3FF"
+            },
+            {
+                "min": 1000,
+                "max": 5000,
+                "label": "1000-5000",
+                "color": "#0080FF"
+            },
+            {
+                "min": 5000,
+                "label": "5000\u4ee5\u4e0a",
+                "color": "#0066CC"
+            }
+        ]
     }
+},
+    };
   },
-  mounted () {
-    // 初始化echarts实例
-    this.chinachart = this.$echarts.init(this.$refs.main)
-    // 配置地图的json文件
-    this.$echarts.registerMap('china', chinaJson)
-
-    var geoCoordMap = {
-      台湾省: [121.5135, 25.0308],
-      黑龙江: [127.9688, 45.368],
-      内蒙古: [110.3467, 41.4899],
-      吉林: [125.8154, 44.2584],
-      北京市: [116.4551, 40.2539],
-      辽宁: [123.1238, 42.1216],
-      河北: [114.4995, 38.1006],
-      天津: [117.4219, 39.4189],
-      山西: [112.3352, 37.9413],
-      陕西: [109.1162, 34.2004],
-      甘肃: [103.5901, 36.3043],
-      宁夏: [106.3586, 38.1775],
-      青海: [101.4038, 36.8207],
-      新疆: [87.9236, 43.5883],
-      西藏: [91.11, 29.97],
-      四川: [103.9526, 30.7617],
-      重庆: [108.384366, 30.439702],
-      山东: [117.1582, 36.8701],
-      河南: [113.4668, 34.6234],
-      江苏: [118.8062, 31.9208],
-      安徽: [117.29, 32.0581],
-      湖北: [114.3896, 30.6628],
-      浙江: [119.5313, 29.8773],
-      福建: [119.4543, 25.9222],
-      江西: [116.0046, 28.6633],
-      湖南: [113.0823, 28.2568],
-      贵州: [106.6992, 26.7682],
-      云南: [102.9199, 25.4663],
-      广东: [113.12244, 23.009505],
-      广西: [108.479, 23.1152],
-      海南: [110.3893, 19.8516],
-      上海: [121.4648, 31.2891]
-
+  computed:{
+  },
+  watch:{
+  },
+  methods: {
+    draw1(){
+            let myChart = echarts.init(document.getElementById('cmap'), 'white', {renderer: 'canvas'});
+            myChart.setOption(this.option1);
+    },
+},
+mounted() {
+    //页面加载的时候，调用画图方法，画图
+    this.draw1();
     }
-    var data = [
-      { name: '台湾省', value: 19 },
-      { name: '北京', value: 199 },
-      { name: '天津', value: 42 },
-      { name: '河北', value: 102 },
-      { name: '山西', value: 81 },
-      { name: '内蒙古', value: 47 },
-      { name: '辽宁', value: 67 },
-      { name: '吉林', value: 82 },
-      { name: '黑龙江', value: 123 },
-      { name: '上海', value: 24 },
-      { name: '江苏', value: 92 },
-      { name: '浙江', value: 114 },
-      { name: '安徽', value: 109 },
-      { name: '福建', value: 116 },
-      { name: '江西', value: 91 },
-      { name: '山东', value: 119 },
-      { name: '河南', value: 137 },
-      { name: '湖北', value: 116 },
-      { name: '湖南', value: 114 },
-      { name: '重庆', value: 91 },
-      { name: '四川', value: 125 },
-      { name: '贵州', value: 62 },
-      { name: '云南', value: 83 },
-      { name: '西藏', value: 9 },
-      { name: '陕西', value: 80 },
-      { name: '甘肃', value: 56 },
-      { name: '青海', value: 10 },
-      { name: '宁夏', value: 18 },
-      { name: '新疆', value: 180 },
-      { name: '广东', value: 123 },
-      { name: '广西', value: 59 },
-      { name: '海南', value: 14 }
-    ]
-
-    var convertData = function (data) {
-      var res = []
-      for (var i = 0; i < data.length; i++) {
-        var geoCoord = geoCoordMap[data[i].name]
-        if (geoCoord) {
-          res.push({
-            name: data[i].name,
-            value: geoCoord.concat(data[i].value)
-          })
-        }
-      }
-      return res
-    }
-    // 配置参数
-    const option = {
-      backgroundColor: {
-        type: 'linear',
-        x: 0,
-        y: 0,
-        x2: 0,
-        y2: 1,
-        colorStops: [{
-          offset: 0, color: '#0199AE' // 0% 处的颜色
-        }, {
-          offset: 1, color: '#00091a' // 100% 处的颜色
-        }],
-        globalCoord: false // 缺省为 false
-      },
-      title: {
-        top: 20,
-        text: '全国办卡地区图示',
-        subtext: '',
-        x: 'center',
-        textStyle: {
-          color: '#fff',
-          fontSize:25
-        }
-      },
-
-      tooltip: {
-        trigger: 'item',
-        formatter: function (params) {
-          if (typeof (params.value)[2] === 'undefined') {
-            return params.name + ' : ' + params.value
-          } else {
-            return params.name + ' : ' + params.value[2]
-          }
-        }
-      },
-      /*   legend: {
-            orient: 'vertical',
-            y: 'bottom',
-            x: 'right',
-             data:['pm2.5'],
-            textStyle: {
-                color: '#fff'
-            }
-        }, */
-      legend: {
-        orient: 'vertical',
-        y: 'bottom',
-        x: 'right',
-        data: ['pm2.5'],
-        textStyle: {
-          color: '#fff'
-        }
-      },
-      visualMap: {    //滚动筛选图例工具
-        show: true,
-        min: 0,
-        max: 200,
-        left: 'left',
-        top: 'bottom',
-        text: ['高', '低'], // 文本，默认为数值文本
-        calculable: true,
-        seriesIndex: [1],
-        inRange: {
-        }
-      },
-      geo: {
-        map: 'china',
-        show: true,
-        roam: true,
-        label: {
-          normal: {
-            show: false   //未选中状态下不显示默认省份文本
-          },
-          emphasis: {
-            show: false   //选中状态下不显示默认省份文本
-          }
-        },
-        itemStyle: {
-          normal: {
-            areaColor: '#3a7fd5',
-            borderColor: '#0a53e9', // 线
-            shadowColor: '#092f8f', // 外发光
-            shadowBlur: 20
-          },
-          emphasis: {
-            areaColor: '#0a2dae' // 悬浮区背景
-          }
-        }
-      },
-      series: [
-        {
-
-          symbolSize: 5,
-          label: {
-            normal: {
-              formatter: '{b}',   //白色省份文本标记
-              position: 'right',
-              show: true
-            },
-            emphasis: {     //点击之后红色省份文本
-              show: true
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: '#fff'
-            }
-          },
-          name: 'light',
-          type: 'scatter',
-          coordinateSystem: 'geo',
-          data: convertData(data)
-
-        },
-        {
-          type: 'map',
-          map: 'china',
-          geoIndex: 0,
-          aspectScale: 0.75, // 长宽比
-          showLegendSymbol: false, // 存在legend时显示
-          label: {
-            normal: {
-              show: false
-            },
-            emphasis: {
-              show: false,
-              textStyle: {
-                color: '#fff'
-              }
-            }
-          },
-          roam: true,
-          itemStyle: {
-            normal: {
-              areaColor: '#031525',
-              borderColor: '#FFFFFF'
-            },
-            emphasis: {
-              areaColor: '#2B91B7'
-            }
-          },
-          animation: false,
-          data: data
-        },
-        {
-          name: 'Top 5',
-          type: 'scatter',
-          coordinateSystem: 'geo',
-          symbol: 'pin',
-          symbolSize: [50, 50],
-          label: {
-            normal: {
-              show: true,
-              textStyle: {
-                color: '#fff',
-                fontSize: 9
-              },
-              formatter (value) {
-                return value.data.value[2]
-              }
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: '#D8BC37' // 标志颜色
-            }
-          },
-          data: convertData(data),
-          showEffectOn: 'render',
-          rippleEffect: {
-            brushType: 'stroke'
-          },
-          hoverAnimation: true,
-          zlevel: 1
-        }
-
-      ]
-    }
-    // 传入数据
-    this.chinachart.setOption(option)
-  }
-}
+};
 </script>
-
-<style>
-.home{
-  height: 1000;
-  width: 100%;
-}
-</style>
