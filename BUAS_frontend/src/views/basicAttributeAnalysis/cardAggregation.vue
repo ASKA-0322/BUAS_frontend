@@ -78,9 +78,9 @@
               borderRadius: 5
             },
             data: [
-              { value: 1024, name: "一张" },
+              { value: 865, name: "一张" },
               { value: 965, name: "两张" },
-              { value: 865, name: "三张" },
+              { value: 1024, name: "三张" },
               { value: 733, name: "四张" },
               { value: 520, name: "五张" },
               { value: 349, name: "六张" },

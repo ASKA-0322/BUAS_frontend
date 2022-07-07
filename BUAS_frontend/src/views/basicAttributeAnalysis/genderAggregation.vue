@@ -69,7 +69,7 @@
             radius: ['40%', '70%'],
             center: ["50%", "60%"],
             data: [
-              { value: 1024, name: "男性" },
+              { value: 1724, name: "男性" },
               { value: 1532, name: "女性" },
             ],
             avoidLabelOverlap: false,

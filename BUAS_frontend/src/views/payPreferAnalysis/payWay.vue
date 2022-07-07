@@ -68,7 +68,7 @@
           {
             name: "支付方式",
             type: "pie",
-            radius: ['40%', '70%'],
+            radius: ['70%'],
             center: ["50%", "60%"],
             data: [
               { value: 16532, name: "网上银行" },

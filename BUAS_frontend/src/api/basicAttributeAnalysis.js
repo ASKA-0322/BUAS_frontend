@@ -9,8 +9,8 @@ export default{
       //``反引号表示模板字符串
       //示例：`/admin/BasicAttributeAnalysis/findChats1/${para1}/${para2}`
       url: ``,
-      method: 'post',   //提交方式
-      data:pageObj    //使用json传递
+      method: 'post',      //提交方式
+      data:pageObj        //使用json传递
     })
   }
 }
