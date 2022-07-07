@@ -4,21 +4,21 @@
   <el-form :inline="true" class="demo-form-inline">   <!-- inline表示一行显示  -->
     <el-form-item><!-- 可添加label标签 -->
       <!-- <el-input v-model="searchObj.hosnam" placeholder="姓名" v-model用来调用页面对象的相关值/> -->
-      <el-input placeholder="姓名" />
+      <el-input placeholder="银行卡号" />
     </el-form-item>
     <el-form-item>
-      <el-input placeholder="工号" />
+      <el-input placeholder="用户姓名" />
     </el-form-item>
     <el-form-item>
-         <el-input placeholder="身份证号" />
+         <el-input placeholder="办卡地区" />
     </el-form-item>
     <el-button type="primary" icon="el-icon-search" @click="getList()">查询</el-button><!-- @click绑定调用方法 -->
      <el-button type="primary" icon="el-icon-plus" @click="getList()">添加用户</el-button><!-- @click绑定调用方法 -->
   </el-form>
-
+  用户总数: {{ 1820 }}
   <!--用户管理表格 -->
   <el-table :data="tableData" stripe style="width: 100%">
-    <el-table-column fixed prop="id" label="用户id" width="100">
+    <el-table-column fixed prop="id" label="消费记录id" width="100">
     </el-table-column>
     <el-table-column prop="name" label="姓名" width="100">
     </el-table-column>
@@ -49,27 +49,52 @@
   </el-table>
   <!--分页 page-size:每页记录数 total：总记录数 @current-change为页数跳转事件触发器（""内填写请求方法名）-->
   <el-pagination
-  :current-page="1"
+  :current-page="page"
   :page-size="limit"
   :total="100"
   style="padding: 30px 0; text-align: center;"
   layout="total, prev, pager, next, jumper"
-  @current-change="fetchData" />
+  @current-change="fetchData" /><!-- layout为分页属性：总数、上一页、页码、下一页、跳转 -->
 
 </div>
 </template>
 
 <script>
-/* 先写死数据 请求参考基本属性分析的性别聚合分析vue文件编写 */
+import { number } from 'echarts/core';
+import Axios from 'axios';
   export default {
+    props:{
+      total:{
+        type:Number,
+        default:100
+      },
+      pageSize:{
+        type:Number
+      }
+    },
     methods: {
       handleClick(row) {
         console.log(row);
+      },
+      getList(){
+
+
       }
     },
     data() {
       return {
-        tableData: [{
+        listLoading: false,
+        list: null, //查询之后接口返回集合
+        page: 1, //当前页
+        limit: 10, //每页显示的记录数
+        total: 100, //总记录数
+        sizer: {},//
+        userList:{},
+        year: [],
+
+
+
+       /*  tableData: [{
           id: '165465',
           name: '周杰伦',
           sex: '男',
@@ -165,7 +190,7 @@
           pay_method:'921053@163.com',
           pay_time:'A',
           commodity_category:'文体用品'
-        }, ]
+        }, ] */
       }
     }
   }
