@@ -42,7 +42,6 @@
 
       },
       mounted () {
-
         axios.get('http://172.20.10.4:8081/base/age/').then(function(response){
             var value =response.data
             console.log(value)
@@ -51,6 +50,16 @@
         function get_age(value){
               // 初始化图表，设置配置项
             var myChart = echarts.init(document.getElementById('main'));
+
+            //设置数据
+            var data=[];
+           // { value: value.data[1].amount, name: value.data[1].period },
+            for (let i = 0; i < value.data.length; i++) {
+                let obj={value:value.data[i].amount,name:value.data[i].period}
+                data.push(obj)
+            }
+
+
             let option ={
                 title: {
                   text: "用户年龄聚合分析",
@@ -71,13 +80,7 @@
                   {
                     name: "用户年龄",
                     type: 'bar',
-                    data: [
-                      { value: value.data[1].amount, name: value.data[1].period },
-                      { value: value.data[0].amount, name: value.data[0].period},
-                      { value: value.data[2].amount, name: value.data[2].period },
-                      { value: value.data[3].amount, name: value.data[3].period },
-                      { value: value.data[4].amount, name: value.data[4].period }
-                    ],
+                    data: data,
                     itemStyle: {
                       color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                         { offset: 0, color: '#83bff6' },

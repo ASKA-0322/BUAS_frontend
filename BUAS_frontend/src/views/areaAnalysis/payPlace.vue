@@ -21,11 +21,19 @@
       }
     },
     mounted() {
-        //函数内写echarts初始化项和组件项
-        // 初始化echarts实例
-        this.chinachart = this.$echarts.init(this.$refs.main)
-        // 配置地图的json文件
-        this.$echarts.registerMap('china', chinaJson)
+      let value
+      axios.get('http://172.20.10.4:8081/area/pay-place').then(function(response){
+        console.log(response)
+            value =response.data
+            console.log(value)
+            console.log(value.data[4].consumptionArea)
+        })
+
+      //函数内写echarts初始化项和组件项
+      // 初始化echarts实例
+      this.chinachart = this.$echarts.init(this.$refs.main)
+      // 配置地图的json文件
+      this.$echarts.registerMap('china', chinaJson)
 
         var geoCoordMap = {
           台湾省: [121.5135, 25.0308],
@@ -389,9 +397,10 @@
         }
         // 传入数据
         this.chinachart.setOption(option)
+        }
 
     }
-  }
+
 </script>
 
 <style>
