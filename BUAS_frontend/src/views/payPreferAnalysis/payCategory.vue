@@ -1,20 +1,16 @@
 <template>
 
-  <div class="app-container" id="main">HEAD
-    用户年龄聚合分析
-=======
-    用户性别聚合分析
->>>>>>> f930d83a3e92a99d71bc51f9030eca84d4d8972f
+  <div class="app-container" id="main">
+      消费类别
   </div>
 
 </template>
 
  <script>
-
+    //引入axios
+    import axios from 'axios';
     // 引入 echarts 核心模块，核心模块提供了 echarts 使用必须要的接口。
     import * as echarts from 'echarts/core';
-    // 引入饼图图表，图表后缀都为 Chart
-    import { PieChart } from 'echarts/charts';
     // 引入提示框，标题，直角坐标系，数据集，内置数据转换器组件，组件后缀都为 Component
     import {
       TitleComponent,
@@ -33,12 +29,10 @@
         // 注册必须的组件
         echarts.use([
           TitleComponent,
-          PieChart,
           TooltipComponent,
           GridComponent,
           DatasetComponent,
           TransformComponent,
-          BarChart,
           LabelLayout,
           UniversalTransition,
           CanvasRenderer,
@@ -46,11 +40,30 @@
 
       },
       mounted () {
+        axios.get('http://172.20.10.4:8081/pay-prefer/pay-category').then(function(response){
+            var value =response.data
+            console.log(value)
+            get_paycategory(value)
+        })
+        function get_paycategory(value){
         // 初始化图表，设置配置项
         var myChart = echarts.init(document.getElementById('main'));
+
+        //循环遍历方法
+            //设置数据
+            var data=[];
+            var catedata=[];
+           // { value: value.data[1].amount, name: value.data[1].period },
+            for (let i = 0; i < value.data.length; i++) {
+                let obj={value:value.data[i].amount,name:value.data[i].commodityCategory}
+                let cateobj=value.data[i].commodityCategory
+                data.push(obj)    //每次循环获取一个下标的记录，存在obj里面，再追加到data里面
+                catedata.push(cateobj)
+            }
+
         let option = {
   title: {
-    text: '商品类别',
+    text: '消费类别',
     left: "center"
   },
   tooltip: {
@@ -63,15 +76,16 @@
     show:true,
     orient: "",
     padding: [0, 10, 0, 20],
-    data:[ "服装鞋帽",
-            "日用百货",
-            "数码产品及其配件",
-            "手提包、箱包",
-            "妆品和美容产品",
-            "书籍音像制品",
-            "家用电器",
-            "食品、保健品",
-            "文体用品"]
+    data:catedata,
+          // [ "服装鞋帽",
+          //   "日用百货",
+          //   "数码产品及其配件",
+          //   "手提包、箱包",
+          //   "妆品和美容产品",
+          //   "书籍音像制品",
+          //   "家用电器",
+          //   "食品、保健品",
+          //   "文体用品"]
   },
   grid: {
     left: '3%',
@@ -85,31 +99,35 @@
   },
   yAxis: {
     type: 'category',
-    data: ["服装鞋帽",
-            "日用百货",
-            "数码产品及其配件",
-            "手提包、箱包",
-            "妆品和美容产品",
-            "书籍音像制品",
-            "家用电器",
-            "食品、保健品",
-            "文体用品"]
+    data:catedata,
+            // ["服装鞋帽",
+            // "日用百货",
+            // "数码产品及其配件",
+            // "手提包、箱包",
+            // "妆品和美容产品",
+            // "书籍音像制品",
+            // "家用电器",
+            // "食品、保健品",
+            // "文体用品"]
   },
   series: [
     {
-      name:'test',
       type: 'bar',
-      data: [{ value: 18203, name: "服装鞋帽" },
-              { value: 23489, name: "日用百货" },
-              { value: 29034, name: "数码产品及其配件" },
-              { value: 104970, name: "手提包、箱包" },
-              { value: 131744, name: "妆品和美容产品" },
-              { value: 630230, name: "书籍音像制品" },
-              { value: 200405, name: "家用电器" },
-              { value: 191214, name: "食品、保健品" },
-              { value: 210715, name: "文体用品" }]
+      data:data,
+            //[
+              // { value: 18203, name: "服装鞋帽" },
+              // { value: 23489, name: "日用百货" },
+              // { value: 29034, name: "数码产品及其配件" },
+              // { value: 104970, name: "手提包、箱包" },
+              // { value: 131744, name: "妆品和美容产品" },
+              // { value: 630230, name: "书籍音像制品" },
+              // { value: 200405, name: "家用电器" },
+              // { value: 191214, name: "食品、保健品" },
+              // { value: 210715, name: "文体用品" }
+            //]
   },]}
         myChart.setOption(option);    //调用工具
+        }
       },
       name: '',
     }
