@@ -8,6 +8,8 @@
 
  <script>
 
+    //引入axios
+    import axios from 'axios';
     // 引入 echarts 核心模块，核心模块提供了 echarts 使用必须要的接口。
     import * as echarts from 'echarts/core';
     // 引入饼图图表，图表后缀都为 Chart
@@ -35,15 +37,20 @@
           GridComponent,
           DatasetComponent,
           TransformComponent,
-          BarChart,
           LabelLayout,
           UniversalTransition,
           CanvasRenderer,
         ]);
 
       },
-      mounted () {
-        // 初始化图表，设置配置项
+      mounted () {    //钩子函数 用于页面渲染之后处理数据
+        axios.get('http://172.20.10.4:8081/base/sex').then(function(response){
+            var value =response.data    //用value获取响应数据
+            console.log(value)
+            get_gender(value)         //调用后端数据配置图表的函数
+        })
+        function get_gender(value){   //传入value
+                  // 初始化图表，设置配置项.
         var myChart = echarts.init(document.getElementById('main'));
         let option ={
           title: {
@@ -58,8 +65,8 @@
           orient: "vertical",
           left: "left",
           data: [
-            "男性",
-            "女性",
+            "男",
+            "女",
           ]
         },
         series: [
@@ -69,8 +76,8 @@
             radius: ['40%', '70%'],
             center: ["50%", "60%"],
             data: [
-              { value: 1724, name: "男性" },
-              { value: 1532, name: "女性" },
+              { value: value.data[0].amount, name: value.data[0].sex },
+              { value: value.data[1].amount, name: value.data[1].sex },
             ],
             avoidLabelOverlap: false,
             itemStyle: {
@@ -98,6 +105,7 @@
         ]
         }
         myChart.setOption(option);    //调用工具
+        }
       },
       name: '',
     }

@@ -7,11 +7,10 @@
 </template>
 
  <script>
-
+    //引入axios
+    import axios from 'axios';
     // 引入 echarts 核心模块，核心模块提供了 echarts 使用必须要的接口。
     import * as echarts from 'echarts/core';
-    // 引入饼图图表，图表后缀都为 Chart
-    import { PieChart } from 'echarts/charts';
     // 引入提示框，标题，直角坐标系，数据集，内置数据转换器组件，组件后缀都为 Component
     import {
       TitleComponent,
@@ -43,56 +42,65 @@
 
       },
       mounted () {
-        // 初始化图表，设置配置项
-        var myChart = echarts.init(document.getElementById('main'));
-        let option ={
-            title: {
-              text: "用户年龄聚合分析",
-              left: "center"
-            },
-            tooltip: {      //图例提示组件
-              trigger: "axis",
-              formatter: "{a} <br/>{b} : {c} "
-            },
-            xAxis: {
-              type: 'category',
-              data: ['20岁以下', '20-30岁', '30-40岁', '40-50岁', '50-60岁', '60岁以上']
-            },
-            yAxis: {
-              type: 'value'
-            },
-            series: [
-              {
-                name: "用户年龄",
-                type: 'bar',
-                data: [
-                  { value: 235, name: "20岁以下" },
-                  { value: 861, name: "20-30岁" },
-                  { value: 1024, name: "30-40岁" },
-                  { value: 599, name: "40-50岁" },
-                  { value: 432, name: "50-60岁" },
-                  { value: 384, name: "60岁以上" }
-                ],
-                itemStyle: {
-                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                    { offset: 0, color: '#83bff6' },
-                    { offset: 0.5, color: '#188df0' },
-                    { offset: 1, color: '#188df0' }
-                  ])
+
+        axios.get('http://172.20.10.4:8081/base/age/').then(function(response){
+            var value =response.data
+            console.log(value)
+            get_age(value)
+        })
+        function get_age(value){
+              // 初始化图表，设置配置项
+            var myChart = echarts.init(document.getElementById('main'));
+            let option ={
+                title: {
+                  text: "用户年龄聚合分析",
+                  left: "center"
                 },
-                emphasis: {
-                  itemStyle: {
-                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                      { offset: 0, color: '#2378f7' },
-                      { offset: 0.7, color: '#2378f7' },
-                      { offset: 1, color: '#83bff6' }
-                    ])
+                tooltip: {      //图例提示组件
+                  trigger: "axis",
+                  formatter: "{a} <br/>{b} : {c} "
+                },
+                xAxis: {
+                  type: 'category',
+                  data: ['20以下', '20-30岁', '30-40岁', '40-50岁', '50岁以上']
+                },
+                yAxis: {
+                  type: 'value'
+                },
+                series: [
+                  {
+                    name: "用户年龄",
+                    type: 'bar',
+                    data: [
+                      { value: value.data[1].amount, name: value.data[1].period },
+                      { value: value.data[0].amount, name: value.data[0].period},
+                      { value: value.data[2].amount, name: value.data[2].period },
+                      { value: value.data[3].amount, name: value.data[3].period },
+                      { value: value.data[4].amount, name: value.data[4].period }
+                    ],
+                    itemStyle: {
+                      color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        { offset: 0, color: '#83bff6' },
+                        { offset: 0.5, color: '#188df0' },
+                        { offset: 1, color: '#188df0' }
+                      ])
+                    },
+                    emphasis: {
+                      itemStyle: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                          { offset: 0, color: '#2378f7' },
+                          { offset: 0.7, color: '#2378f7' },
+                          { offset: 1, color: '#83bff6' }
+                        ])
+                      }
+                    },
                   }
-                },
-              }
-            ]
+                ]
+            }
+            myChart.setOption(option);    //调用工具
+
         }
-        myChart.setOption(option);    //调用工具
+
       },
       name: '',
     }
