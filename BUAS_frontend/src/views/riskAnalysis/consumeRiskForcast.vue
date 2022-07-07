@@ -48,6 +48,7 @@
           text: "消费风险分析",
           left: "center"
         },
+        color:['#f5c7c7','#eb8f8f','#dd4444',],//分别指定扇形颜色
         tooltip: {      //图例提示组件
           trigger: "item",
           formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -77,7 +78,7 @@
               itemStyle: {
                 shadowBlur: 10,
                 shadowOffsetX: 0,
-                shadowColor: "rgba(0, 0, 0, 0.5)"
+                shadowColor: "rgba(0, 0, 0, 0.9)"
               }
             }
           }
@@ -94,5 +95,4 @@
   margin-top: 50px;
 }
 </style>
-
 
