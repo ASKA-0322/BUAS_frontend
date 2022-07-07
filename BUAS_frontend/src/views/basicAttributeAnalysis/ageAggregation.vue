@@ -65,6 +65,11 @@
                   text: "用户年龄聚合分析",
                   left: "center"
                 },
+                grid:{
+                  width:'60%',
+                  left:'20%',
+                  top:'20%'
+                },
                 tooltip: {      //图例提示组件
                   trigger: "axis",
                   formatter: "{a} <br/>{b} : {c} "
@@ -89,18 +94,19 @@
                     ],
                     itemStyle: {
                       color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                        { offset: 0, color: '#83bff6' },
-                        { offset: 0.5, color: '#188df0' },
-                        { offset: 1, color: '#188df0' }
+                        { offset: 0, color: '#a6c0fe' },
+                        { offset: 0.5, color: '#afc6fe' },
+                        { offset: 1, color: '#a6c0fe' }
                       ])
                     },
                     emphasis: {
                       itemStyle: {
                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                          { offset: 0, color: '#2378f7' },
-                          { offset: 0.7, color: '#2378f7' },
-                          { offset: 1, color: '#83bff6' }
-                        ])
+                          { offset: 0, color: '#f68084' },
+                          { offset: 0.7, color: '#f78d90' },
+                          { offset: 1, color: '#f68084' }
+                        ]),
+                        shadowBlur: 5,
                       }
                     },
                   }
