@@ -29,12 +29,10 @@
         // 注册必须的组件
         echarts.use([
           TitleComponent,
-          PieChart,
           TooltipComponent,
           GridComponent,
           DatasetComponent,
           TransformComponent,
-          BarChart,
           LabelLayout,
           UniversalTransition,
           CanvasRenderer,
@@ -51,13 +49,15 @@
               // 初始化图表，设置配置项
             var myChart = echarts.init(document.getElementById('main'));
 
-            //设置数据
+
+            //循环遍历方法
+            /* //设置数据
             var data=[];
            // { value: value.data[1].amount, name: value.data[1].period },
             for (let i = 0; i < value.data.length; i++) {
                 let obj={value:value.data[i].amount,name:value.data[i].period}
-                data.push(obj)
-            }
+                data.push(obj)    //每次循环获取一个下标的记录，存在obj里面，再追加到data里面
+            } */
 
 
             let option ={
@@ -80,7 +80,13 @@
                   {
                     name: "用户年龄",
                     type: 'bar',
-                    data: data,
+                    data: [
+                      {value:value.data[1].amount,name:value.data[1].period},
+                      {value:value.data[0].amount,name:value.data[0].period},
+                      {value:value.data[2].amount,name:value.data[2].period},
+                      {value:value.data[3].amount,name:value.data[3].period},
+                      {value:value.data[4].amount,name:value.data[4].period},
+                    ],
                     itemStyle: {
                       color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                         { offset: 0, color: '#83bff6' },
