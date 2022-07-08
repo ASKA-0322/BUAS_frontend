@@ -34,10 +34,6 @@
         </el-button> -->
         <el-button type="primary" style="width:100%" @click="userClick">用户登录</el-button>
       </el-form-item>
-      <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: admin</span>
-      </div>
     </el-form>
   </div>
 </template>
@@ -64,8 +60,8 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: 'admin'
+        username: '',
+        password: ''
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -172,6 +168,9 @@ $bg:#2d3a4b;
 $dark_gray:#889aa4;
 $light_gray:#eee;
 .login-container {
+  background-image: url("../../assets/login2.png");
+  background-size: cover;
+  background-position: center;
   position: fixed;
   height: 100%;
   width: 100%;
@@ -184,16 +183,6 @@ $light_gray:#eee;
     max-width: 100%;
     padding: 35px 35px 15px 35px;
     margin: 120px auto;
-  }
-  .tips {
-    font-size: 14px;
-    color: #fff;
-    margin-bottom: 10px;
-    span {
-      &:first-of-type {
-        margin-right: 16px;
-      }
-    }
   }
   .svg-container {
     padding: 6px 5px 6px 15px;
