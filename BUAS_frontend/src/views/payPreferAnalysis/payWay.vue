@@ -93,6 +93,7 @@
               show: false,
               position: 'center'
             },
+            color:['#cde6c7','#abc88b','#78a355','#5c7a29'],
             emphasis: {
               label: {
                 show: true,
