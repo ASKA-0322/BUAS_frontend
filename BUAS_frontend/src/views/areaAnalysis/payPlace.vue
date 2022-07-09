@@ -7,299 +7,340 @@
   </div>
 </template>
 <script>
+//引入axios
+import axios from 'axios';
 import * as echarts from "echarts";
 import 'echarts/map/js/china.js';
+// 引入提示框，标题，直角坐标系，数据集，内置数据转换器组件，组件后缀都为 Component
+import {
+  TitleComponent,
+  TooltipComponent,
+  GridComponent,
+  DatasetComponent,
+  TransformComponent
+} from 'echarts/components';
+// 标签自动布局，全局过渡动画等特性
+import { LabelLayout, UniversalTransition } from 'echarts/features';
+// 引入 Canvas 渲染器，注意引入 CanvasRenderer 或者 SVGRenderer 是必须的一步
+import { CanvasRenderer } from 'echarts/renderers';
 
 export default {
+  created () {
+        // 注册必须的组件
+        echarts.use([
+          TitleComponent,
+          TooltipComponent,
+          GridComponent,
+          DatasetComponent,
+          TransformComponent,
+          LabelLayout,
+          UniversalTransition,
+          CanvasRenderer,
+        ]);
+
+      },
+  mounted() {
+    axios.get('http://172.20.10.4:8081/area/pay-place').then(function(response){
+            var value =response.data    //用value获取响应数据
+            console.log(value)
+            get_payPlace(value)         //调用后端数据配置图表的函数
+        })
+    function get_payPlace(value){   //传入value
+    let myChart = echarts.init(document.getElementById('cmap'));
+    //设置数据
+    var data=[];
+    for (let i = 0; i < value.data.length; i++) {
+        let obj={name:value.data[i].consumptionArea,value:value.data[i].amount}
+        data.push(obj)    //每次循环获取一个下标的记录，存在obj里面，再追加到data里面
+    }
+    let option={
+        animation: true,
+        animationThreshold: 2000,
+        animationDuration: 1000,
+        animationEasing: "cubicOut",
+        animationDelay: 0,
+        animationDurationUpdate: 300,
+        animationEasingUpdate: "cubicOut",
+        animationDelayUpdate: 0,
+        color: [
+            "#008B8B"
+        ],
+        series:[   //数据系列
+            {
+                type: "map",
+                name: "支付次数",
+                label: {
+                    show: true,
+                    position: "inside",
+                    distance: "inside",
+                    margin: 8,
+                    fontSize: 16,
+                    fontStyle: "normal"
+                },
+                mapType: "china",
+                data:[
+                    {
+                        name: "广东",
+                        value: value.data[22].amount
+                    },
+                    {
+                        name: "北京",
+                        value: value.data[31].amount
+                    },
+                    {
+                        name: "江苏",
+                        value: value.data[19].amount
+                    },
+                    {
+                        name: "浙江",
+                        value: value.data[15].amount
+                    },
+                    {
+                        name: "上海",
+                        value: value.data[34].amount
+                    },
+                    {
+                        name: "四川",
+                        value: value.data[28].amount
+                    },
+                    {
+                        name: "陕西",
+                        value: value.data[3].amount
+                    },
+                    {
+                        name: "湖北",
+                        value: value.data[12].amount
+                    },
+                    {
+                        name: "山东",
+                        value: value.data[24].amount
+                    },
+                    {
+                        name: "天津",
+                        value: value.data[27].amount
+                    },
+                    {
+                        name: "重庆",
+                        value: value.data[4].amount
+                    },
+                    {
+                        name: "湖南",
+                        value: value.data[11].amount
+                    },
+                    {
+                        name: "辽宁",
+                        value: value.data[5].amount
+                    },
+                    {
+                        name: "福建",
+                        value: value.data[8].amount
+                    },
+                    {
+                        name: "黑龙江",
+                        value: value.data[0].amount
+                    },
+                    {
+                        name: "河南",
+                        value: value.data[16].amount
+                    },
+                    {
+                        name: "河北",
+                        value: value.data[17].amount
+                    },
+                    {
+                        name: "广西",
+                        value: value.data[21].amount
+                    },
+                    {
+                        name: "吉林",
+                        value: value.data[29].amount
+                    },
+                    {
+                        name: "云南",
+                        value: value.data[33].amount
+                    },
+                    {
+                        name: "江西",
+                        value: value.data[18].amount
+                    },
+                    {
+                        name: "山西",
+                        value: value.data[23].amount
+                    },
+                    {
+                        name: "贵州",
+                        value: value.data[6].amount
+                    },
+                    {
+                        name: "台湾",
+                        value: value.data[30].amount
+                    },
+                    {
+                        name: "甘肃",
+                        value: value.data[9].amount
+                    },
+                    {
+                        name: "内蒙古",
+                        value: value.data[32].amount
+                    },
+                    {
+                        name: "新疆",
+                        value: value.data[20].amount
+                    },
+                    {
+                        name: "香港",
+                        value: value.data[1].amount
+                    },
+                    {
+                        name: "海南",
+                        value: value.data[14].amount
+                    },
+                    {
+                        name: "宁夏",
+                        value: value.data[26].amount
+                    },
+                    {
+                        name: "安徽",
+                        value: value.data[25].amount
+                    },
+                    {
+                        name: "青海",
+                        value: value.data[2].amount
+                    },
+                    {
+                        name: "西藏",
+                        value: value.data[7].amount
+                    },
+                    {
+                        name: "澳门",
+                        value: value.data[10].amount
+                    }
+                ],
+                roam: false,
+                zoom: 1,
+                showLegendSymbol: false,
+                emphasis: {}
+            }
+        ],
+        legend:[   //图例
+            {
+                data: [
+                    "专利数"
+                ],
+                selected: {
+                    "专利数": true
+                },
+                show: false,
+                padding: 5,
+                itemGap: 10,
+                itemWidth: 25,
+                itemHeight: 14,
+                textStyle: {
+                    fontFamily: "Arial",
+                    fontSize: 20
+                }
+            }
+        ],
+        tooltip:{
+            show: true,
+            trigger: "item",
+            triggerOn: "mousemove|click",
+            axisPointer: {
+                type: "line"
+            },
+            showContent: true,
+            alwaysShowContent: false,
+            showDelay: 0,
+            hideDelay: 100,
+            textStyle: {
+                fontSize: 14
+            },
+            borderWidth: 0,
+            padding: 5
+        },
+        title: [
+            {
+                text: "支付地点分布图",
+                padding: 5,
+                itemGap: 10,
+                textStyle: {
+                    fontFamily: "Arial",
+                    fontSize: 30
+                },
+                subtextStyle: {
+                    fontFamily: "Arial",
+                    fontSize: 20
+                }
+            }
+        ],
+        visualMap: {
+            show: true,
+            type: "piecewise",
+            min: 0,
+            max: 2000,
+            inRange: {
+                color: [
+                    "#50a3ba",
+                    "#eac763",
+                    "#d94e5d"
+                ]
+            },
+            calculable: true,
+            inverse: false,
+            splitNumber: 5,
+            orient: "vertical",
+            showLabel: true,
+            itemWidth: 20,
+            itemHeight: 14,
+            borderWidth: 0,
+            pieces: [
+                {
+                    min: 20,
+                    max: 30,
+                    label: "20-30",
+                    color: "#FFBCAF"
+                },
+                {
+                    min: 30,
+                    max: 40,
+                    label: "30-40",
+                    color: "#FCA18F "
+                },
+                {
+                    min: 40,
+                    max: 50,
+                    label: "40-50",
+                    color: "#FB947D"
+                },
+                {
+                    min: 50,
+                    max: 60,
+                    label: "50-60",
+                    color: "#F67764"
+                },
+                {
+                    min: 60,
+                    max: 70,
+                    label: "60-70",
+                    color: "#F06154"
+                },
+                {
+                    min: 70,
+                    label: "70以上",
+                    color: " #DC3A47"
+                }
+            ]
+        }
+}
+myChart.setOption(option);
+    }
+    },
+    /* 预留可视化功能拓展组件 */
   components: {
  },
   name: '',
   data() {
     return {
-    option1 : {
-    "animation": true,
-    "animationThreshold": 2000,
-    "animationDuration": 1000,
-    "animationEasing": "cubicOut",
-    "animationDelay": 0,
-    "animationDurationUpdate": 300,
-    "animationEasingUpdate": "cubicOut",
-    "animationDelayUpdate": 0,
-    "color": [
-        "#008B8B"
-    ],
-    "series": [   //数据系列
-        {
-            "type": "map",
-            "name": "支付次数",
-            "label": {
-                "show": true,
-                "position": "inside",
-                "distance": "inside",
-                "margin": 8,
-                "fontSize": 16,
-                "fontStyle": "normal"
-            },
-            "mapType": "china",
-            "data": [
-                {
-                    "name": "\u5317\u4eac",
-                    "value": "19902"
-                },
-                {
-                    "name": "\u5e7f\u4e1c",
-                    "value": "16610"
-                },
-                {
-                    "name": "\u6c5f\u82cf",
-                    "value": "10997"
-                },
-                {
-                    "name": "\u6d59\u6c5f",
-                    "value": "7673"
-                },
-                {
-                    "name": "\u4e0a\u6d77",
-                    "value": "7295"
-                },
-                {
-                    "name": "\u56db\u5ddd",
-                    "value": "4513"
-                },
-                {
-                    "name": "\u9655\u897f",
-                    "value": "4062"
-                },
-                {
-                    "name": "\u6e56\u5317",
-                    "value": "3826"
-                },
-                {
-                    "name": "\u5c71\u4e1c",
-                    "value": "3759"
-                },
-                {
-                    "name": "\u5929\u6d25",
-                    "value": "2514"
-                },
-                {
-                    "name": "\u5b89\u5fbd",
-                    "value": "2340"
-                },
-                {
-                    "name": "\u91cd\u5e86",
-                    "value": "2327"
-                },
-                {
-                    "name": "\u6e56\u5357",
-                    "value": "2265"
-                },
-                {
-                    "name": "\u8fbd\u5b81",
-                    "value": "2260"
-                },
-                {
-                    "name": "\u798f\u5efa",
-                    "value": "2180"
-                },
-                {
-                    "name": "\u9ed1\u9f99\u6c5f",
-                    "value": "1592"
-                },
-                {
-                    "name": "\u6cb3\u5357",
-                    "value": "1298"
-                },
-                {
-                    "name": "\u6cb3\u5317",
-                    "value": "833"
-                },
-                {
-                    "name": "\u5e7f\u897f",
-                    "value": "768"
-                },
-                {
-                    "name": "\u5409\u6797",
-                    "value": "734"
-                },
-                {
-                    "name": "\u4e91\u5357",
-                    "value": "679"
-                },
-                {
-                    "name": "\u6c5f\u897f",
-                    "value": "558"
-                },
-                {
-                    "name": "\u5c71\u897f",
-                    "value": "423"
-                },
-                {
-                    "name": "\u8d35\u5dde",
-                    "value": "326"
-                },
-                {
-                    "name": "\u53f0\u6e7e",
-                    "value": "292"
-                },
-                {
-                    "name": "\u7518\u8083",
-                    "value": "197"
-                },
-                {
-                    "name": "\u5185\u8499\u53e4",
-                    "value": "182"
-                },
-                {
-                    "name": "\u65b0\u7586",
-                    "value": "137"
-                },
-                {
-                    "name": "\u9999\u6e2f",
-                    "value": "106"
-                },
-                {
-                    "name": "\u6d77\u5357",
-                    "value": "94"
-                },
-                {
-                    "name": "\u5b81\u590f",
-                    "value": "77"
-                },
-                {
-                    "name": "\u9752\u6d77",
-                    "value": "45"
-                },
-                {
-                    "name": "\u897f\u85cf",
-                    "value": "13"
-                },
-                {
-                    "name": "\u6fb3\u95e8",
-                    "value": "10"
-                }
-            ],
-            "roam": false,
-            "zoom": 1,
-            "showLegendSymbol": false,
-            "emphasis": {}
-        }
-    ],
-    "legend": [   //图例
-        {
-            "data": [
-                "专利数"
-            ],
-            "selected": {
-                "专利数": true
-            },
-            "show": false,
-            "padding": 5,
-            "itemGap": 10,
-            "itemWidth": 25,
-            "itemHeight": 14,
-            "textStyle": {
-                "fontFamily": "Arial",
-                "fontSize": 20
-            }
-        }
-    ],
-    "tooltip": {
-        "show": true,
-        "trigger": "item",
-        "triggerOn": "mousemove|click",
-        "axisPointer": {
-            "type": "line"
-        },
-        "showContent": true,
-        "alwaysShowContent": false,
-        "showDelay": 0,
-        "hideDelay": 100,
-        "textStyle": {
-            "fontSize": 14
-        },
-        "borderWidth": 0,
-        "padding": 5
-    },
-    "title": [
-        {
-            "text": "支付地点分布图",
-            "padding": 5,
-            "itemGap": 10,
-            "textStyle": {
-                "fontFamily": "Arial",
-                "fontSize": 30
-            },
-            "subtextStyle": {
-                "fontFamily": "Arial",
-                "fontSize": 20
-            }
-        }
-    ],
-    "visualMap": {
-        "show": true,
-        "type": "piecewise",
-        "min": 0,
-        "max": 2000,
-        "inRange": {
-            "color": [
-                "#50a3ba",
-                "#eac763",
-                "#d94e5d"
-            ]
-        },
-        "calculable": true,
-        "inverse": false,
-        "splitNumber": 5,
-        "orient": "vertical",
-        "showLabel": true,
-        "itemWidth": 20,
-        "itemHeight": 14,
-        "borderWidth": 0,
-        "pieces": [
-            {
-                "max": 10,
-                "label": "10\u4ee5\u4e0b",
-                "color": "#FECAC0"
-            },
-            {
-                "min": 10,
-                "max": 50,
-                "label": "10-100",
-                "color": "#FFBCAF"
-            },
-            {
-                "min": 50,
-                "max": 100,
-                "label": "100-200",
-                "color": "#FCA18F "
-            },
-            {
-                "min": 100,
-                "max": 500,
-                "label": "200-500",
-                "color": "#FB947D"
-            },
-            {
-                "min": 500,
-                "max": 1000,
-                "label": "500-100",
-                "color": "#F67764"
-            },
-            {
-                "min": 1000,
-                "max": 5000,
-                "label": "1000-5000",
-                "color": "#F06154"
-            },
-            {
-                "min": 5000,
-                "label": "5000\u4ee5\u4e0a",
-                "color": " #DC3A47"
-            }
-        ]
-    }
-},
     };
   },
   computed:{
@@ -307,14 +348,7 @@ export default {
   watch:{
   },
   methods: {
-    draw1(){
-            let myChart = echarts.init(document.getElementById('cmap'), 'white', {renderer: 'canvas'});
-            myChart.setOption(this.option1);
     },
-},
-mounted() {
-    //页面加载的时候，调用画图方法，画图
-    this.draw1();
-    }
-};
+}
+
 </script>
