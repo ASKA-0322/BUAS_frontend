@@ -171,7 +171,7 @@ export const constantRouterMap = [
         name: 'echarts测试',
         component: () => import('@/views/riskAnalysis/echartsTest'),
         meta: { title: 'echarts测试', icon: 'gender' },
-        hidden: true
+        hidden: false
       }
     ]
   },
@@ -189,6 +189,12 @@ export const constantRouterMap = [
         name: '后台管理',
         component: () => import('@/views/backstageManage/backstageManage'), //设置要跳转的页面路径
         meta: { title: '后台管理', icon: 'back' }
+      },
+      {
+        path: 'addUser',
+        name: '添加用户消费记录',
+        component: () => import('@/views/backstageManage/addUser'), //设置要跳转的页面路径
+        meta: { title: '添加用户消费记录', icon: 'back' }
       },
     ],
   },
