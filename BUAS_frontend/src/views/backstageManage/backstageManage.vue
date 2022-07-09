@@ -38,7 +38,7 @@
     </el-table-column>
     <el-table-column prop="pay_time" label="支付时间" width="200">
     </el-table-column>
-    <el-table-column prop="commodity_category" label="商品类别" width="100">
+    <el-table-column prop="commodity_category" label="商品类别" width="200">
     </el-table-column>
     <el-table-column fixed="right" label="操作" width="100">
       <template slot-scope="scope">
@@ -73,7 +73,6 @@ import { number } from 'echarts/core';
        axios.get('http://172.20.10.4:8081/user/uid/62280507').then(function(response){
             var value =response.data    //用value获取响应数据
             console.log(value)
-            get_gender(value)         //调用后端数据配置图表的函数
         })
     },
     methods: {
@@ -103,97 +102,97 @@ import { number } from 'echarts/core';
           name: '周杰伦',
           sex: '男',
           age: '43',
-          credit_cards: '4531313541321333',
-          area: '19790118',
-          consumption_area:'总经理',
-          consumption_amount:'15545621548',
-          pay_method:'905843@163.com',
-          pay_time:'S',
+          credit_cards: '45',
+          area: '台湾',
+          consumption_area:'台湾',
+          consumption_amount:'1548',
+          pay_method:'微信支付',
+          pay_time:'2022年',
           commodity_category:'文体用品'
         }, {
           id: '465131',
           name: '林俊杰',
           sex: '男',
           age: '42',
-          credit_cards: '4123134631321313',
-          area: '200333',
-          consumption_area:'业务经理',
-          consumption_amount:'18615165215',
-          pay_method:'121513@163.com',
-          pay_time:'A',
-          commodity_category:'文体用品'
+          credit_cards: '13',
+          area: '云南',
+          consumption_area:'贵州',
+          consumption_amount:'2155',
+          pay_method:'支付宝支付',
+          pay_time:'2022年',
+          commodity_category:'生活用品'
         }, {
           id: '264641',
           name: '陶喆',
           sex: '男',
           age: '48',
-          credit_cards: '4324335133513135',
-          area: '200333',
-          consumption_area:'销售经理',
-          consumption_amount:'16545654565',
-          pay_method:'461561@qq.com',
-          pay_time:'S',
+          credit_cards: '35',
+          area: '新疆',
+          consumption_area:'重庆',
+          consumption_amount:'1654',
+          pay_method:'刷卡支付',
+          pay_time:'2021年',
           commodity_category:'文体用品'
         }, {
           id: '165484',
           name: '蔡依林',
           sex: '女',
           age: '38',
-          credit_cards: '4231321313513213',
-          area: '200333',
-          consumption_area:'柜员',
-          consumption_amount:'15545621548',
-          pay_method:'121513@qq.com',
-          pay_time:'B',
+          credit_cards: '13',
+          area: '新疆',
+          consumption_area:'内蒙古',
+          consumption_amount:'1548',
+          pay_method:'微信支付',
+          pay_time:'2020年',
           commodity_category:'文体用品'
         }, {
           id: '165791',
           name: '罗大佑',
           sex: '男',
           age: '67',
-          credit_cards: '4531354313313213',
-          area: '19790118',
-          consumption_area:'柜员',
-          consumption_amount:'15545621548',
-          pay_method:'964321@163.com',
-          pay_time:'B',
+          credit_cards: '13',
+          area: '山西',
+          consumption_area:'山东',
+          consumption_amount:'548',
+          pay_method:'微信支付',
+          pay_time:'2019年',
           commodity_category:'文体用品'
         }, {
           id: '165760',
           name: '张学友',
           sex: '男',
           age: '60',
-          credit_cards: '4535231311334138',
-          area: '19790118',
-          consumption_area:'项目经理',
-          consumption_amount:'15545621548',
-          pay_method:'6547913@qq.com',
-          pay_time:'S',
-          commodity_category:'文体用品'
+          credit_cards: '23',
+          area: '香港',
+          consumption_area:'澳门',
+          consumption_amount:'1548',
+          pay_method:'支付宝支付',
+          pay_time:'2018年',
+          commodity_category:'电子设备'
         }, {
           id: '249637',
           name: '梁静茹',
           sex: '女',
           age: '44',
-          credit_cards: '4313553141321337',
-          area: '200333',
-          consumption_area:'资深员工',
-          consumption_amount:'15545621548',
-          pay_method:'149876@qq.com',
-          pay_time:'A',
-          commodity_category:'文体用品'
+          credit_cards: '37',
+          area: '台湾',
+          consumption_area:'浙江',
+          consumption_amount:'2548',
+          pay_method:'银行卡支付',
+          pay_time:'2016年',
+          commodity_category:'图书'
         }, {
           id: '497135',
           name: '邓紫棋',
           sex: '女',
           age: '30',
-          credit_cards: '4553131354531049',
-          area: '19790118',
-          consumption_area:'资深员工',
-          consumption_amount:'15545621548',
-          pay_method:'921053@163.com',
-          pay_time:'A',
-          commodity_category:'文体用品'
+          credit_cards: '9',
+          area: '香港',
+          consumption_area:'台湾',
+          consumption_amount:'5548',
+          pay_method:'微信支付',
+          pay_time:'2017年',
+          commodity_category:'电子设备'
         }, ]
       }
     }
