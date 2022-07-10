@@ -1,9 +1,6 @@
 <template>
   <div class="app-container">
     <el-form ref="form" :model="form" label-width="180px">
-      <el-form-item label="序号">
-        <el-input v-model="bankUser.id"></el-input>
-      </el-form-item>
       <el-form-item label="银行卡号">
         <el-input v-model="bankUser.userId"></el-input>
       </el-form-item>
@@ -40,7 +37,7 @@
 
       <el-form-item>
         <el-button type="primary" @click="onSubmitAdd">添加</el-button>
-        <el-button>取消</el-button>
+        <el-button type="primary" @click="cancelAdd">取消</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -68,9 +65,12 @@ import backstageManage from '@/api/backstageManage'
               message: '添加成功!'
             })
           //跳转列表页面，使用路由跳转方式实现
-          this.router.push({ path: '../backstageManage/backstageManage'})
+          this.$router.push({ path: '../backstageManage/backstageManage'})
 
         })
+      },
+      cancelAdd(){
+        this.$router.push({ path: '../backstageManage/backstageManage'})
       }
     },
     created () {

@@ -194,7 +194,8 @@ export const constantRouterMap = [
         path: 'addUser',
         name: '添加用户消费记录',
         component: () => import('@/views/backstageManage/addUser'), //设置要跳转的页面路径
-        meta: { title: '添加用户消费记录', icon: 'back' }
+        meta: { title: '添加用户消费记录', icon: 'back' },
+        hidden:true
       },
     ],
   },

@@ -20,7 +20,7 @@
           </el-select>
       </el-form-item> -->
       <el-button type="primary" icon="el-icon-search" @click="getList()">查询</el-button><!-- @click绑定调用方法 -->
-      <el-button type="primary" icon="el-icon-plus" @click="dialogFormVisible = true">添加用户</el-button><!-- @click绑定调用方法 -->
+      <el-button type="primary" icon="el-icon-plus" @click="addUser()">添加用户</el-button><!-- @click绑定调用方法 -->
     </el-form>
     <!--用户管理表格 -->
     <el-table :data="list" stripe style="width: 100%">      <!-- list放入data中进行遍历 -->
@@ -86,6 +86,9 @@ export default {
       this.getList()  //查询
 
   },
+  mounted () {
+
+  },
   methods: {    //定义方法，进行请求接口的调用
     //查询用户列表函数
     getList(page=1){    //框架中已经封装好了，页码不需要手动设置
@@ -102,7 +105,14 @@ export default {
         console.log(error)
       })
     },
-    //删除用户信息
+    //添加用户消费记录
+    addUser(){
+      //路由跳转方式跳转添加表单
+      // this.$router.push({ path: '@/views/backstageManage/addUser'})
+      window.location.href = 'http://localhost:9528/#/backstageManage/addUser'
+    },
+
+    //删除用户消费记录
     removeUser(id){
       this.$confirm('此操作将永久删除该用户信息, 是否继续?', '提示', {
           confirmButtonText: '确定',
