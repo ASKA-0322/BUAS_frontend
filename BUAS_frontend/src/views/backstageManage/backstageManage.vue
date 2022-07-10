@@ -9,22 +9,22 @@
       <el-form-item>
         <el-input v-model="searchObj.name" placeholder="姓名" />
       </el-form-item>
-      <!-- <el-form-item>
-          <el-select v-model="valueprovince" clearable filterable placeholder="办卡地区">
+      <el-form-item>
+          <el-select clearable v-model="searchObj.area" placeholder="办卡地区">
             <el-option
-              v-for="item in provincesoptions"
-              :key="item.valueprovince"
+              v-for="item in option"
+              :key="item.value"
               :label="item.label"
-              :value="item.valueprovince">
+              :value="item.value">
             </el-option>
           </el-select>
-      </el-form-item> -->
+      </el-form-item>
       <el-button type="primary" icon="el-icon-search" @click="getList()">查询</el-button><!-- @click绑定调用方法 -->
       <el-button type="primary" icon="el-icon-plus" @click="addUser()">添加用户</el-button><!-- @click绑定调用方法 -->
     </el-form>
     <!--用户管理表格 -->
-    <el-table :data="list" stripe style="width: 100%">      <!-- list放入data中进行遍历 -->
-      <el-table-column fixed prop="id" label="序号" width="100">    <!-- prop中的参数名要和后端传入的数据名一致 -->
+    <el-table :data="list" :header-cell-style="{background:'#EEF1F6',color:'#486180'}" border stripe style="width: 100%">      <!-- list放入data中进行遍历 -->
+      <el-table-column fixed prop="id" label="序号" width="80">    <!-- prop中的参数名要和后端传入的数据名一致 -->
       </el-table-column>
       <el-table-column fixed prop="userId" label="银行卡号" width="100">
       </el-table-column>
@@ -34,9 +34,9 @@
       </el-table-column>
       <el-table-column prop="age" label="年龄" width="100">
       </el-table-column>
-      <el-table-column prop="creditCards" label="持卡数量" width="200">
+      <el-table-column prop="creditCards" label="持卡数量" width="100">
       </el-table-column>
-      <el-table-column prop="area" label="办卡地区(中国范围)" width="120">
+      <el-table-column prop="area" label="办卡地区(中国范围)" width="200">
       </el-table-column>
       <el-table-column prop="consumptionArea" label="消费省份" width="100">
       </el-table-column>
@@ -44,14 +44,14 @@
       </el-table-column>
       <el-table-column prop="payMethod" label="支付方式" width="200">
       </el-table-column>
-      <el-table-column prop="payTime" label="支付时间" width="200">
+      <el-table-column prop="payTime" label="支付时间" width="150">
       </el-table-column>
       <el-table-column prop="commodityCategory" label="商品类别" width="200">
       </el-table-column>
-      <el-table-column fixed="right" label="操作" width="200">
+      <el-table-column fixed="right" label="操作" width="150">
         <template slot-scope="scope">     <!-- slot-scope为作用域插槽 -->
           <router-link :to="'/backstageManage/editUser/'+scope.row.id">     <!-- 路由跳转 -->
-            <el-button size="small">编辑</el-button>
+            <el-button size="small" type="info">编辑</el-button>
           </router-link>
           <el-button size="small" type="danger" @click="removeUser(scope.row.id)">删除</el-button>
         </template>
@@ -81,6 +81,146 @@ export default {
       searchObj:{},   //条件封装对象
       list:[],     //每页数据集合
       total:0,     //总记录数
+
+      //办卡地区选框option
+      option: [
+            {
+              value: "北京",
+              label: "北京",
+            },
+            {
+              value: "天津",
+              label: "天津",
+            },
+            {
+              value: "上海",
+              label: "上海",
+            },
+            {
+              value: "重庆",
+              label: "重庆",
+            },
+            {
+              value: "河北",
+              label: "河北",
+            },
+            {
+              value: "河南",
+              label: "河南",
+            },
+            {
+              value: "云南",
+              label: "云南",
+            },
+            {
+              value: "辽宁",
+              label: "辽宁",
+            },
+            {
+              value: "黑龙江",
+              label: "黑龙江",
+            },
+            {
+              value: "湖南",
+              label: "湖南",
+            },
+            {
+              value: "安徽",
+              label: "安徽",
+            },
+            {
+              value: "山东",
+              label: "山东",
+            },
+            {
+              value: "新疆",
+              label: "新疆",
+            },
+            {
+              value: "江苏",
+              label: "江苏",
+            },
+            {
+              value: "浙江",
+              label: "浙江",
+            },
+            {
+              value: "江西",
+              label: "江西",
+            },
+            {
+              value: "湖北",
+              label: "湖北",
+            },
+            {
+              value: "广西",
+              label: "广西",
+            },
+            {
+              value: "甘肃",
+              label: "甘肃",
+            },
+            {
+              value: "山西",
+              label: "山西",
+            },
+            {
+              value: "内蒙古",
+              label: "内蒙古",
+            },
+            {
+              value: "陕西",
+              label: "陕西",
+            },
+            {
+              value: "吉林",
+              label: "吉林",
+            },
+            {
+              value: "福建",
+              label: "福建",
+            },
+            {
+              value: "广东",
+              label: "广东",
+            },
+            {
+              value: "青海",
+              label: "青海",
+            },
+            {
+              value: "西藏",
+              label: "西藏",
+            },
+            {
+              value: "四川",
+              label: "四川",
+            },
+            {
+              value: "宁夏",
+              label: "宁夏",
+            },
+            {
+              value: "海南",
+              label: "海南",
+            },
+            {
+              value: "台湾",
+              label: "台湾",
+            },
+            {
+              value: "香港",
+              label: "香港",
+            },
+            {
+              value: "澳门",
+              label: "澳门",
+            },
+            {
+              value: "贵州",
+              label: "贵州",
+            }
+          ]
     }
   },
   created () {    //在页面渲染之前执行
@@ -141,10 +281,6 @@ export default {
           });
         });
      },
-
-
-
-
   },
 }
 </script>
