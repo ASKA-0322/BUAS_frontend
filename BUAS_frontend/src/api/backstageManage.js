@@ -8,13 +8,13 @@ export default{
       //此处写后端接口路径
       // `@RequestMapping注解里面的路径+@PostMapping注解里面的路径(路径中参数用$拼接)`
       //``反引号表示模板字符串
-      //示例：`/admin/BasicAttributeAnalysis/findChats1/${para1}/${para2}`
-      url: `user/get/?page=${page}&pageSize=${pageSize}`,
+      //示例：post方法：`接口url/${para1}/${para2}`   get方法：`接口url/?para1=${para1}&para2=${para2}`
+      url: `user/${page}/${pageSize}`,
       method: 'post',      //提交方式
       data:searchObj        //使用json传递
     })
   },
-  //添加用户消费记录  user/add
+  //添加用户消费记录
   addUserConsume(bankUser){
     return request({
       url: `user/add`,
@@ -28,10 +28,23 @@ export default{
     return request({
       url: `user/del/${id}`,
       method: 'post',      //提交方式
-      params:id
     })
   },
-
+  //按id查询单条用户消费记录
+  getUserById(id){
+    return request({
+      url: `user/get/${id}`,
+      method: 'get'
+    })
+  },
+  //修改用户消费记录
+  updateUser(bankUser){
+    return request({
+      url: `user/update`,
+      method: 'post',
+      data:bankUser
+    })
+  }
 
 }
 

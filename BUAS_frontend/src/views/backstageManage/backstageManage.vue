@@ -50,7 +50,9 @@
       </el-table-column>
       <el-table-column fixed="right" label="操作" width="200">
         <template slot-scope="scope">     <!-- slot-scope为作用域插槽 -->
-          <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          <router-link :to="'/backstageManage/editUser/'+scope.row.id">     <!-- 路由跳转 -->
+            <el-button size="small">编辑</el-button>
+          </router-link>
           <el-button size="small" type="danger" @click="removeUser(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
@@ -138,8 +140,8 @@ export default {
             message: '已取消删除'
           });
         });
+     },
 
-    },
 
 
 

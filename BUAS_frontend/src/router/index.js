@@ -197,9 +197,15 @@ export const constantRouterMap = [
         meta: { title: '添加用户消费记录', icon: 'back' },
         hidden:true
       },
+      {
+        path: 'editUser/:id',   //修改时数据回显传参
+        name: '修改用户消费记录',
+        component: () => import('@/views/backstageManage/addUser'), //设置要跳转的页面路径
+        meta: { title: '修改用户消费记录', icon: 'back' },
+        hidden:true
+      }
     ],
   },
-
   {
     path: '/nested',
     component: Layout,
@@ -269,7 +275,7 @@ export const constantRouterMap = [
     ]
   },
 
-  { path: '*', redirect: '/404', hidden: true }
+  // { path: '*', redirect: '/404', hidden: true }
 ]
 
 export default new Router({
