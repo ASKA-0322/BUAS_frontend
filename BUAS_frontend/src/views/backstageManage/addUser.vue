@@ -112,7 +112,7 @@ import backstageManage from '@/api/backstageManage'
         }
       },
       cancelAdd(){
-        this.$router.push({ path: '../backstageManage/backstageManage'})
+        this.$router.push({ path: '../backstageManage'})
       }
     },
 
