@@ -1,7 +1,9 @@
 
 <template>
   <div>
-    <!-- 专利国内分布图 -->
+    <div style="position:absolute;left:1300px;top:73px">
+      <el-button id="change" icon="el-icon-refresh" circle type="text" color="#c8c8c8"></el-button>
+    </div>
     <div id="cmap" class="chart-container" style="width:1280px; height:768px;margin:auto;top:80px;"></div>
     <div style="height:78px"></div>
   </div>
@@ -43,8 +45,6 @@ export default {
     axios.get('http://172.20.10.4:8081/area/hold-card').then(function(response){
             var value =response.data    //用value获取响应数据
             console.log(value)
-            console.log(value.data)
-            console.log(0)
             get_cardArea(value)         //调用后端数据配置图表的函数
         })
     function get_cardArea(value){   //传入value
@@ -52,7 +52,7 @@ export default {
     //设置数据
     var data=[];
     for (let i = 0; i < value.data.length; i++) {
-      let obj={name:value.data[i].consumptionArea,value:value.data[i].amount}
+      let obj={name:value.data[i].area,value:value.data[i].amount}
         data.push(obj)    //每次循环获取一个下标的记录，存在obj里面，再追加到data里面
     }
     let option={
@@ -70,6 +70,7 @@ export default {
         series:[   //数据系列
             {
                 type: "map",
+                id:"amount",
                 name: "办卡人数",
                 label: {
                     show: true,
@@ -80,148 +81,151 @@ export default {
                     fontStyle: "normal"
                 },
                 mapType: "china",
-                data:[
-                    {
-                        name: "广东",
-                        value: 288
-                    },
-                    {
-                        name: "北京",
-                        value: 3102
-                    },
-                    {
-                        name: "江苏",
-                        value: 1902
-                    },
-                    {
-                        name: "浙江",
-                        value: 1502
-                    },
-                    {
-                        name: "上海",
-                        value: 3402
-                    },
-                    {
-                        name: "四川",
-                        value: 2802
-                    },
-                    {
-                        name: "陕西",
-                        value: 302
-                    },
-                    {
-                        name: "湖北",
-                        value: 1202
-                    },
-                    {
-                        name: "山东",
-                        value: 2402
-                    },
-                    {
-                        name: "天津",
-                        value: 2702
-                    },
-                    {
-                        name: "重庆",
-                        value: 402
-                    },
-                    {
-                        name: "湖南",
-                        value: 1102
-                    },
-                    {
-                        name: "辽宁",
-                        value: 502
-                    },
-                    {
-                        name: "福建",
-                        value: 802
-                    },
-                    {
-                        name: "黑龙江",
-                        value: 1002
-                    },
-                    {
-                        name: "河南",
-                        value: 1602
-                    },
-                    {
-                        name: "河北",
-                        value: 1702
-                    },
-                    {
-                        name: "广西",
-                        value: 2102
-                    },
-                    {
-                        name: "吉林",
-                        value: 2902
-                    },
-                    {
-                        name: "云南",
-                        value: 3302
-                    },
-                    {
-                        name: "江西",
-                        value: 1802
-                    },
-                    {
-                        name: "山西",
-                        value: 2302
-                    },
-                    {
-                        name: "贵州",
-                        value: 602
-                    },
-                    {
-                        name: "台湾",
-                        value: 3002
-                    },
-                    {
-                        name: "甘肃",
-                        value: 902
-                    },
-                    {
-                        name: "内蒙古",
-                        value: 3202
-                    },
-                    {
-                        name: "新疆",
-                        value: 2002
-                    },
-                    {
-                        name: "香港",
-                        value: 102
-                    },
-                    {
-                        name: "海南",
-                        value: 1402
-                    },
-                    {
-                        name: "宁夏",
-                        value: 2602
-                    },
-                    {
-                        name: "安徽",
-                        value: 2502
-                    },
-                    {
-                        name: "青海",
-                        value: 202
-                    },
-                    {
-                        name: "西藏",
-                        value: 702
-                    },
-                    {
-                        name: "澳门",
-                        value: 1002
-                    }
-                ],
+                data:data,
+                // [
+                //     {
+                //         name: "广东",
+                //         value: 288
+                //     },
+                //     {
+                //         name: "北京",
+                //         value: 3102
+                //     },
+                //     {
+                //         name: "江苏",
+                //         value: 1902
+                //     },
+                //     {
+                //         name: "浙江",
+                //         value: 1502
+                //     },
+                //     {
+                //         name: "上海",
+                //         value: 3402
+                //     },
+                //     {
+                //         name: "四川",
+                //         value: 2802
+                //     },
+                //     {
+                //         name: "陕西",
+                //         value: 302
+                //     },
+                //     {
+                //         name: "湖北",
+                //         value: 1202
+                //     },
+                //     {
+                //         name: "山东",
+                //         value: 2402
+                //     },
+                //     {
+                //         name: "天津",
+                //         value: 2702
+                //     },
+                //     {
+                //         name: "重庆",
+                //         value: 402
+                //     },
+                //     {
+                //         name: "湖南",
+                //         value: 1102
+                //     },
+                //     {
+                //         name: "辽宁",
+                //         value: 502
+                //     },
+                //     {
+                //         name: "福建",
+                //         value: 802
+                //     },
+                //     {
+                //         name: "黑龙江",
+                //         value: 1002
+                //     },
+                //     {
+                //         name: "河南",
+                //         value: 1602
+                //     },
+                //     {
+                //         name: "河北",
+                //         value: 1702
+                //     },
+                //     {
+                //         name: "广西",
+                //         value: 2102
+                //     },
+                //     {
+                //         name: "吉林",
+                //         value: 2902
+                //     },
+                //     {
+                //         name: "云南",
+                //         value: 3302
+                //     },
+                //     {
+                //         name: "江西",
+                //         value: 1802
+                //     },
+                //     {
+                //         name: "山西",
+                //         value: 2302
+                //     },
+                //     {
+                //         name: "贵州",
+                //         value: 602
+                //     },
+                //     {
+                //         name: "台湾",
+                //         value: 3002
+                //     },
+                //     {
+                //         name: "甘肃",
+                //         value: 902
+                //     },
+                //     {
+                //         name: "内蒙古",
+                //         value: 3202
+                //     },
+                //     {
+                //         name: "新疆",
+                //         value: 2002
+                //     },
+                //     {
+                //         name: "香港",
+                //         value: 102
+                //     },
+                //     {
+                //         name: "海南",
+                //         value: 1402
+                //     },
+                //     {
+                //         name: "宁夏",
+                //         value: 2602
+                //     },
+                //     {
+                //         name: "安徽",
+                //         value: 2502
+                //     },
+                //     {
+                //         name: "青海",
+                //         value: 202
+                //     },
+                //     {
+                //         name: "西藏",
+                //         value: 702
+                //     },
+                //     {
+                //         name: "澳门",
+                //         value: 1002
+                //     }
+                // ],
                 roam: false,
                 zoom: 1,
                 showLegendSymbol: false,
-                emphasis: {}
+                emphasis: {},
+                animationDurationUpdate: 1000,
+                universalTransition: true
             }
         ],
         legend:[   //图例
@@ -243,6 +247,16 @@ export default {
                 }
             }
         ],
+        toolbox: {
+          show: true,
+          //orient: 'vertical',
+          left: 'right',
+          top: 'top',
+          feature: {
+            dataView: { readOnly: true },
+            saveAsImage: {},
+          }
+        },
         tooltip:{
             show: true,
             trigger: "item",
@@ -279,7 +293,7 @@ export default {
             show: true,
             type: "piecewise",
             min: 0,
-            max: 2000,
+            max: 600,
             inRange: {
                 color: [
                     "#50a3ba",
@@ -298,43 +312,111 @@ export default {
             pieces: [
                 {
                     min: 0,
-                    max: 500,
-                    label: "0-500",
+                    max: 100,
+                    label: "100以下",
                     color: "#ECF5FF"
                 },
                 {
-                    min: 500,
-                    max: 1000,
-                    label: "500-1000",
+                    min: 100,
+                    max: 200,
+                    label: "100-200",
                     color: "#D2E9FF"
                 },
                 {
-                    min: 1000,
-                    max: 1500,
-                    label: "1000-1500",
+                    min: 200,
+                    max: 300,
+                    label: "200-300",
                     color: "#ACD6FF"
                 },
                 {
-                    min: 1500,
-                    max: 2000,
-                    label: "1500-2000",
+                    min: 300,
+                    max: 400,
+                    label: "300-400",
                     color: "#84C1FF"
                 },
                 {
-                    min: 2000,
-                    max: 2500,
-                    label: "2000-2500",
+                    min: 400,
+                    max: 500,
+                    label: "400-500",
                     color: "#46A3FF"
                 },
                 {
-                    min: 2500,
-                    label: "2500以上",
-                    color: "#0080FF"
+                    min: 500,
+                    max: 600,
+                    label: "500-600",
+                    color: "#198dff"
+                },
+                {
+                    min: 600,
+                    label: "600以上",
+                    color: "#0073e6"
                 }
             ]
         }
 }
-myChart.setOption(option);
+
+const barOption = {
+    title: {
+      text: "各省份办卡人数",
+      left: "center"
+    },
+    yAxis: {
+      type: 'value',
+      name:'办卡人数'
+    },
+    xAxis: {
+      name:'省份',
+      type: 'category',
+      axisLabel: {
+        rotate: 30
+      },
+      data: data.map(function (item) {
+        return item.name;
+      })
+    },
+    toolbox: {
+      show: true,
+      //orient: 'vertical',
+      left: 'right',
+      top: 'top',
+      feature: {
+        dataView: { readOnly: true },
+        saveAsImage: {},
+      }
+    },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow'
+      }
+    },
+    animationDurationUpdate: 1000,
+    series: {
+      type: 'bar',
+      id: 'amount',
+      data: data.map(function (item) {
+        return item.value;
+      }),
+      universalTransition: true
+    }
+  };
+
+   data.sort(function (a, b) {
+    return a.value - b.value;
+  });
+
+  let currentOption = option;
+  myChart.setOption(option);
+
+// 图表间的切换
+  let btnChange = document.querySelector('#change')
+  btnChange.onclick = function(){
+    currentOption = currentOption === option ? barOption : option;
+    myChart.setOption(currentOption, true);
+  }
+
+
+//myChart.setOption(option);
     }
     },
     /* 预留可视化功能拓展组件 */
@@ -354,3 +436,10 @@ myChart.setOption(option);
 }
 
 </script>
+
+<style>
+.el-icon-refresh{
+  color: #c8c8c8;
+  font-size: 20px;
+}
+</style>

@@ -4,7 +4,8 @@
   </div>
 </template>
 <script>
-
+    //引入axios
+    import axios from 'axios';
     // 引入 echarts 核心模块，核心模块提供了 echarts 使用必须要的接口。
     import * as echarts from 'echarts/core';
     // 引入饼图图表，图表后缀都为 Chart
@@ -33,7 +34,6 @@
           GridComponent,
           DatasetComponent,
           TransformComponent,
-          BarChart,
           LabelLayout,
           UniversalTransition,
           CanvasRenderer,
@@ -41,6 +41,13 @@
 
       },
       mounted () {
+        axios.get('http://172.20.10.4:8081/risk/consum').then(function(response){
+            var value =response.data
+            console.log(value)
+            get_consumrisk(value)
+        })
+        function get_consumrisk(value){
+
         // 初始化图表，设置配置项
         var myChart = echarts.init(document.getElementById('main'));
         let option ={
@@ -66,13 +73,12 @@
           {
             name: "风险等级",
             type: "pie",
-            roseType: 'radius',
             radius: ["20%", "60%"],
             center: ["50%", "60%"],
             data: [
-              { value: 335, name: "低风险" },
-              { value: 310, name: "中风险" },
-              { value: 234, name: "高风险" },
+              { value: value.data[0].amount , name: "低风险" },
+              { value: value.data[1].amount , name: "中风险" },
+              { value: value.data[2].amount , name: "高风险" },
             ],
             emphasis: {
               itemStyle: {
@@ -85,6 +91,7 @@
         ]
         }
         myChart.setOption(option);    //调用工具
+        }
       },
       name: '',
     }

@@ -150,9 +150,9 @@ export const constantRouterMap = [
     children: [
       {
         path: 'consumeRiskForcast',
-        name: '消费风险预测',
+        name: '消费风险分析',
         component: () => import('@/views/riskAnalysis/consumeRiskForcast'), //设置要跳转的页面路径
-        meta: { title: '消费风险预测', icon: 'pay' }
+        meta: { title: '消费风险分析', icon: 'pay' }
       },
       {
         path: 'ageRiskAnalysis',
