@@ -2,10 +2,10 @@
   <div class="app-container">
     <el-form ref="form" :model="form" label-width="180px">
       <el-form-item label="银行卡号">
-        <el-input placeholder="请输入8位银行卡号" v-model="bankUser.userId" maxlength="8" minlength="8" onkeyup="value=value.replace(/^\D*(\d*(?:\.\d{0,2})?).*$/g, '$1')">></el-input>
+        <el-input placeholder="请输入8位银行卡号" clearable v-model="bankUser.userId" maxlength="8" minlength="8" onkeyup="value=value.replace(/^\D*(\d*(?:\.\d{0,2})?).*$/g, '$1')">></el-input>
       </el-form-item>
       <el-form-item label="姓名">
-        <el-input placeholder="请输入用户姓名" v-model="bankUser.name"></el-input>
+        <el-input placeholder="请输入用户姓名" clearable v-model="bankUser.name"></el-input>
       </el-form-item>
       <el-form-item label="性别">
         <!-- <el-radio v-model="bankUser.sex" label="男">男</el-radio>
@@ -16,10 +16,10 @@
     </el-radio-group>
       </el-form-item>
       <el-form-item label="年龄">
-        <el-input placeholder="请输入用户年龄" v-model="bankUser.age"></el-input>
+        <el-input placeholder="请输入用户年龄" clearable v-model="bankUser.age"></el-input>
       </el-form-item>
       <el-form-item label="持卡数量">
-        <el-input placeholder="请输入用户持卡数量" v-model="bankUser.creditCards"></el-input>
+        <el-input placeholder="请输入用户持卡数量" clearable v-model="bankUser.creditCards"></el-input>
       </el-form-item>
       <el-form-item label="办卡地区（中国范围）">
         <el-select clearable v-model="bankUser.area" placeholder="请选择办卡所在省份">
@@ -42,7 +42,7 @@
         </el-select>
       </el-form-item>
       <el-form-item label="消费金额">
-        <el-input placeholder="请输入消费金额" v-model="bankUser.consumptionAmount"></el-input>
+        <el-input placeholder="请输入消费金额" clearable v-model="bankUser.consumptionAmount"></el-input>
       </el-form-item>
       <el-form-item label="支付方式">
         <el-select clearable v-model="bankUser.payMethod" placeholder="请选择支付方式">
@@ -362,7 +362,16 @@ import backstageManage from '@/api/backstageManage'
   }
 </script>
 <style scoped>
-
+ .el-button--primary:hover{
+  background-color: #4DBF8C;
+ }
+ .el-button--primary:focus{
+  background-color: #304156;
+ }
+ .el-button{
+  background-color: #304156;
+  border: 0;
+ }
 </style>
 
 

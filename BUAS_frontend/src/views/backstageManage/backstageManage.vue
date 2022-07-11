@@ -4,10 +4,10 @@
     <el-form :inline="true">   <!-- inline表示一行显示  -->
       <el-form-item><!-- 可添加label标签 -->
         <!-- <el-input v-model="searchObj.xxx" placeholder="查询条件值" v-model用来调用页面对象的相关值/ 实现双向绑定> -->
-        <el-input v-model="searchObj.userId" placeholder="银行卡号" />
+        <el-input v-model="searchObj.userId" clearable placeholder="银行卡号" />
       </el-form-item>
       <el-form-item>
-        <el-input v-model="searchObj.name" placeholder="姓名" />
+        <el-input v-model="searchObj.name" clearable placeholder="姓名" />
       </el-form-item>
       <el-form-item>
           <el-select clearable v-model="searchObj.area" placeholder="办卡地区">
@@ -19,8 +19,8 @@
             </el-option>
           </el-select>
       </el-form-item>
-      <el-button type="primary" icon="el-icon-search" @click="getList()">查询</el-button><!-- @click绑定调用方法 -->
-      <el-button type="primary" icon="el-icon-plus" @click="addUser()">添加用户</el-button><!-- @click绑定调用方法 -->
+      <el-button type="primary" icon="el-icon-search" @click="getList()" class="button">查询</el-button><!-- @click绑定调用方法 -->
+      <el-button type="primary" icon="el-icon-plus" @click="addUser()" class="button">添加用户</el-button><!-- @click绑定调用方法 -->
     </el-form>
     <!--用户管理表格 -->
     <el-table :data="list" :header-cell-style="{background:'#EEF1F6',color:'#486180'}" border stripe style="width: 100%">      <!-- list放入data中进行遍历 -->
@@ -284,8 +284,18 @@ export default {
   },
 }
 </script>
-<style scoped>
 
+<style>
+.el-button--info:hover,
+.el-button--danger:hover,
+.el-button--primary:hover{
+  background-color: #4DBF8C;
+}
+.button,
+.el-button--primary:focus{
+  background-color:#304156;
+  border: 0;
+}
 </style>
 
 
