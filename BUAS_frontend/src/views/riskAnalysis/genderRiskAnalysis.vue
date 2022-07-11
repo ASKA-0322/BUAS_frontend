@@ -4,7 +4,8 @@
   </div>
 </template>
 <script>
-
+    //引入axios
+    import axios from 'axios';
     // 引入 echarts 核心模块，核心模块提供了 echarts 使用必须要的接口。
     import * as echarts from 'echarts/core';
     // 引入饼图图表，图表后缀都为 Chart
@@ -33,7 +34,6 @@
           GridComponent,
           DatasetComponent,
           TransformComponent,
-          BarChart,
           LabelLayout,
           UniversalTransition,
           CanvasRenderer,
@@ -41,6 +41,13 @@
 
       },
       mounted () {
+
+        axios.get('http://172.20.10.4:8081/risk/sex').then(function(response){//获取后端 用户--风险指数
+            var value =response.data
+            get_risksex(value)
+        })
+
+        function get_risksex(value){
         // 初始化图表，设置配置项
         var myChart = echarts.init(document.getElementById('main'));
         const itemStylelow = {
@@ -90,8 +97,8 @@
           dataset: {
             source: [
               ['sex', '低风险', '中风险', '高风险'],
-              ['男性', 21654, 56451, 7512],
-              ['女性', 19325, 42803, 8521],
+              ['男性', value.data[1].low, value.data[1].mid, value.data[1].high],
+              ['女性', value.data[0].low, value.data[0].mid, value.data[0].high],
             ]
           },
           xAxis: { type: 'category' },
@@ -102,6 +109,7 @@
             { type: 'bar' ,itemStyle: itemStylehigh,}]
         };
         myChart.setOption(option);    //调用工具
+        }
       },
       name: '',
     }
