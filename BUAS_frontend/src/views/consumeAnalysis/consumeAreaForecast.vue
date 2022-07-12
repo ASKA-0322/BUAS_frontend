@@ -1,7 +1,7 @@
 <template>
 <div>
   <div style="position:absolute;left:15px;top:10px">
-    <el-select clearable v-model="area" @change="selectChanged" placeholder="省份">
+    <el-select clearable v-model="area" @change="selectChanged" placeholder="请选择省份">
       <el-option
         v-for="item in option"
         :key="item.value"
@@ -198,12 +198,30 @@
         CanvasRenderer,
       ]);
 
-      this.getprovince()
-
     },
     mounted() {
       // 初始化图表，设置配置项
-      var myChart = echarts.init(document.getElementById('main'));
+
+
+    },
+    methods: {
+    // 选框省份选择时发送新的请求
+    selectChanged(){
+      consumeAreaForecast.getProvince(this.area)
+      .then(response => {   //接口返回的数据
+        console.log(response)
+        //返回集合复制list
+        this.list = response.data
+        console.log(this.list[0].amount)    //表示消费金额
+        var myChart = echarts.init(document.getElementById('main'));
+      console.log("jaychou")
+      console.log(this.list.length)
+      //设置数据
+      var amountData=[];
+      for (let i = 0; i < this.list.length; i++) {
+          let obj = this.list[i].amount
+          amountData.push(obj)    //每次循环获取一个下标的记录，存在obj里面，再追加到data里面
+      }
       let option = {
         title: {
           text: "地域消费预测",
@@ -243,9 +261,6 @@
         yAxis: [{
             type: 'value',
             name: '消费金额柱状图',
-            min: 0,
-            max: 200,
-            interval: 50,
             axisLabel: {
               formatter: '{value} 元'
             }
@@ -253,9 +268,6 @@
           {
             type: 'value',
             name: '消费金额折线图',
-            min: 0,
-            max: 200,
-            interval: 50,
             axisLabel: {
               formatter: '{value} 元'
             }
@@ -270,7 +282,7 @@
                 return value + ' 元';
               }
             },
-            data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7]
+            data: amountData
           },
           {
             name: '消费金额折线图',
@@ -281,23 +293,11 @@
                 return value + ' 元';
               }
             },
-            data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7]
+            data:amountData
           }
         ]
       }
       myChart.setOption(option); //调用工具
-    },
-    methods: {
-    selectChanged(){
-      consumeAreaForecast.getProvince(this.area)
-      .then(response => {   //接口返回的数据
-        console.log(response)
-
-        //返回集合复制list
-        this.list = response.data
-        console.log(this.list)
-        // //总记录数
-        // this.total = response.data.total
       })//请求成功调用
       .catch(error => { //请求失败调用
         console.log(error)
