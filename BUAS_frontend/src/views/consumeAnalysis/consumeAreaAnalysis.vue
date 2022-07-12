@@ -173,6 +173,22 @@
                 text: event.data.groupId+'用户消费类别',
                 left: "center"
               },
+              visualMap: {
+                orient: 'horizontal',
+                left: 'center',
+                min: 1000,
+                max: 20000,
+                text: ['High', 'Low'],
+                // Map the score column to color
+                dimension: 1,
+                inRange: {
+                  // color: ['#65B581', '#FFCE34', '#FD665F']
+                  //color:['#abecd6','#2580B3']
+                  // color:['#abecd6','#33539e']
+                  //color:['#bfb8da','#7facd6','#33539e']//紫色蓝色
+                  color:['#90d7ec','#76becc','#145b7d']
+                }
+              },
               series: {
                 type: 'bar',
                 id: 'sales',
