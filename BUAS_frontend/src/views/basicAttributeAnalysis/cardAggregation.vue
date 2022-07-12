@@ -82,8 +82,7 @@
           {
             name: "用户持卡数",
             type: "pie",
-            radius: [30, 200],
-            roseType: 'area',
+            radius: [80, 200],
             center: ["50%", "60%"],
             itemStyle: {
               borderRadius: 5

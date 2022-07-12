@@ -184,8 +184,8 @@ const itemStylehigh = {
          nameTextStyle: {
            fontSize: 16
          },
-         min:0.002,
-         max:0.02,
+         min:0,
+         max:1,
          gridIndex:0,
          splitLine: {
            show: false
@@ -208,8 +208,8 @@ const itemStylehigh = {
            left: '42%',
            top:'12.5%',
            dimension: 1,
-           min: 0.002,
-           max: 0.02,
+           min: 0,
+           max: 1,
            precision:4,
            itemHeight: 380,
            seriesIndex: 0,
