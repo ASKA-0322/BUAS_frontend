@@ -55,6 +55,7 @@
         let option ={
           title: {
           text: "用户持卡聚合分析",
+          textStyle:{ fontSize:30},//标题字体样式
           left: "center"
         },
         tooltip: {      //图例提示组件
@@ -100,7 +101,7 @@
               { value: value.data[0].amount, name: value.data[0].cards },
               { value: value.data[1].amount, name: value.data[1].cards },
             ],
-            emphasis: {
+            emphasis: {   //鼠标监测 移入放大
               itemStyle: {
                 shadowBlur: 10,
                 shadowOffsetX: 0,

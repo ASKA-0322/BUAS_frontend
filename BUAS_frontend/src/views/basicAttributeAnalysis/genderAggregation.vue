@@ -55,13 +55,18 @@
         let option ={
           title: {
           text: "用户性别聚合分析",
+          textStyle:{ fontSize:30},//标题字体样式
           left: "center"
         },
+        color:['#FF9999','#96AED6'],
         tooltip: {      //图例提示组件
           trigger: "item",
           formatter: "{a} <br/>{b} : {c} ({d}%)"
         },
         legend: {     //图例筛选组件 跟series配合使用 data要与series的name一致
+          //图例大小
+          itemHeight: 20,
+          itemWidth: 45,
           orient: "vertical",
           left: "left",
           data: [

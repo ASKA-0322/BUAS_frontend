@@ -1,11 +1,10 @@
 
 <template>
   <div>
-    <div style="position:absolute;left:1300px;top:73px">
+    <div style="position:absolute;left:1300px;top:34px">
       <el-button id="change" icon="el-icon-refresh" circle type="text" color="#c8c8c8"></el-button>
     </div>
-    <div id="cmap" class="chart-container" style="width:1280px; height:768px;margin:auto;top:80px;"></div>
-    <div style="height:78px"></div>
+    <div id="cmap" class="chart-container" style="width:1280px; height:700px;margin:auto;top:40px;"></div>
   </div>
 </template>
 <script>
@@ -71,7 +70,7 @@ export default {
             {
                 type: "map",
                 id:"amount",
-                name: "办卡人数",
+                name: "办卡次数",
                 label: {
                     show: true,
                     position: "inside",
@@ -309,6 +308,7 @@ export default {
             itemWidth: 20,
             itemHeight: 14,
             borderWidth: 0,
+            bottom:80,
             pieces: [
                 {
                     min: 0,
@@ -357,12 +357,13 @@ export default {
 
 const barOption = {
     title: {
-      text: "各省份办卡人数",
+      text: "各省份办卡次数",
+      textStyle:{ fontSize:30},//标题字体样式
       left: "center"
     },
     yAxis: {
       type: 'value',
-      name:'办卡人数'
+      name:'办卡次数'
     },
     xAxis: {
       name:'省份',
@@ -393,12 +394,88 @@ const barOption = {
     animationDurationUpdate: 1000,
     series: {
       type: 'bar',
+      itemStyle:{
+        opacity: 0.9,
+        shadowBlur: 0.5,
+        shadowOffsetX: 0,
+        shadowOffsetY: 0,
+        shadowColor: 'rgba(0,0,0,0.9)'
+      },
       id: 'amount',
       data: data.map(function (item) {
         return item.value;
       }),
       universalTransition: true
-    }
+    },
+    grid:{
+      bottom: "60",
+      containLabel: true
+    },
+    visualMap: {
+            show: true,
+            type: "piecewise",
+            min: 0,
+            max: 600,
+            inRange: {
+                color: [
+                    "#50a3ba",
+                    "#eac763",
+                    "#d94e5d"
+                ]
+            },
+            calculable: true,
+            inverse: false,
+            splitNumber: 5,
+            orient: "vertical",
+            showLabel: true,
+            itemWidth: 20,
+            itemHeight: 14,
+            borderWidth: 0,
+            bottom:80,
+            pieces: [
+                {
+                    min: 0,
+                    max: 100,
+                    label: "100以下",
+                    color: "#ECF5FF"
+                },
+                {
+                    min: 100,
+                    max: 200,
+                    label: "100-200",
+                    color: "#D2E9FF"
+                },
+                {
+                    min: 200,
+                    max: 300,
+                    label: "200-300",
+                    color: "#ACD6FF"
+                },
+                {
+                    min: 300,
+                    max: 400,
+                    label: "300-400",
+                    color: "#84C1FF"
+                },
+                {
+                    min: 400,
+                    max: 500,
+                    label: "400-500",
+                    color: "#46A3FF"
+                },
+                {
+                    min: 500,
+                    max: 600,
+                    label: "500-600",
+                    color: "#198dff"
+                },
+                {
+                    min: 600,
+                    label: "600以上",
+                    color: "#0073e6"
+                }
+            ]
+        }
   };
 
    data.sort(function (a, b) {

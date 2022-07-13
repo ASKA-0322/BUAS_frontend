@@ -55,6 +55,7 @@
         let option ={
           title: {
           text: "支付方式",
+          textStyle:{ fontSize:30},//标题字体样式,
           left: "center"
         },
         tooltip: {      //图例提示组件

@@ -36,7 +36,7 @@
       </el-table-column>
       <el-table-column prop="creditCards" label="持卡数量" width="100">
       </el-table-column>
-      <el-table-column prop="area" label="办卡地区(中国范围)" width="200">
+      <el-table-column prop="area" label="办卡地区" width="100">
       </el-table-column>
       <el-table-column prop="consumptionArea" label="消费省份" width="100">
       </el-table-column>

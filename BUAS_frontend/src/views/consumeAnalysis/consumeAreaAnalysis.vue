@@ -89,6 +89,7 @@
         let option ={
           title: {
           text: "地域消费分析",
+          textStyle:{ fontSize:30},//标题字体样式,
           left: "center"
         },
         yAxis: {

@@ -113,6 +113,7 @@ const itemStylehigh = {
      let option = {
       title: {
         text: "风险年龄分析",
+        textStyle:{ fontSize:30},//标题字体样式,
         left: 'center',
         top: 0
       },

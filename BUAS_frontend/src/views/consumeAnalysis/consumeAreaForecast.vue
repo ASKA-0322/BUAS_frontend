@@ -199,32 +199,13 @@
       ]);
 
     },
-    mounted() {
-      // 初始化图表，设置配置项
-
-
-    },
-    methods: {
-    // 选框省份选择时发送新的请求
-    selectChanged(){
-      consumeAreaForecast.getProvince(this.area)
-      .then(response => {   //接口返回的数据
-        console.log(response)
-        //返回集合复制list
-        this.list = response.data
-        console.log(this.list[0].amount)    //表示消费金额
-        var myChart = echarts.init(document.getElementById('main'));
-      console.log("jaychou")
-      console.log(this.list.length)
-      //设置数据
-      var amountData=[];
-      for (let i = 0; i < this.list.length; i++) {
-          let obj = this.list[i].amount
-          amountData.push(obj)    //每次循环获取一个下标的记录，存在obj里面，再追加到data里面
-      }
+    mounted() {     //图表框 首次渲染
+       // 初始化图表，设置配置项
+      var myChart = echarts.init(document.getElementById('main'));
       let option = {
         title: {
           text: "地域消费预测",
+          textStyle:{ fontSize:30},//标题字体样式,
           left: "center",
         },
         tooltip: {
@@ -273,6 +254,18 @@
             }
           }
         ],
+        visualMap: {
+          orient: 'horizontal',
+          left: 'center',
+          min: 5000,
+          max: 25000,
+          text: ['High', 'Low'],
+          // Map the score column to color
+          dimension: 1,
+          inRange: {
+             color:['#90d7ec','#76becc','#145b7d']
+          }
+        },
         series: [
           {
             name: '消费金额柱状图',
@@ -282,7 +275,123 @@
                 return value + ' 元';
               }
             },
-            data: amountData
+          },
+          {
+            name: '消费金额折线图',
+            type: 'line',
+            yAxisIndex: 1,
+            tooltip: {
+              valueFormatter: function (value) {
+                return value + ' 元';
+              }
+            },
+          }
+        ]
+      }
+      myChart.setOption(option); //调用工具
+      //请求成功调用
+      //把将原本在mounted中的绘图代码段（从echarts注册到调用）
+      //挪到methods中与select组件通过@change绑定的监听方法体内，放在请求之后
+      //实现每次操作选框调用selectChanged()方法时请求之后修改图表
+    },
+    methods: {
+    // 选框省份选择时发送新的请求
+    selectChanged(){
+      consumeAreaForecast.getProvince(this.area)
+      .then(response => {   //接口返回的数据
+        //返回数据放入list列表里
+        console.log(response)
+        this.list = response.data
+        console.log(this.list[0].amount)    //表示消费金额
+      // 初始化图表，设置配置项
+      var myChart = echarts.init(document.getElementById('main'));
+      // console.log("jaychou")
+      // console.log(this.list.length)
+      //设置数据
+      var amountData=[];
+      var amountForcast=[];
+      for (let i = 0; i < this.list.length; i++) {
+          let obj = this.list[i].amount
+          amountData.push(obj)    //每次循环获取一个下标的记录，存在obj里面，再追加到data里面
+      }
+      for (let i = 0; i < this.list.length-2; i++) {
+          let obj = this.list[i].amount
+          amountForcast.push(obj)    //每次循环获取一个下标的记录，存在obj里面，再追加到data里面
+      }
+      let option = {
+        title: {
+          text: "地域消费预测",
+          textStyle:{ fontSize:30},//标题字体样式,
+          left: "center",
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross',
+            crossStyle: {
+              color: '#999'
+            }
+          }
+        },
+        toolbox: {
+          feature: {
+            dataView: {
+              show: true,
+              readOnly: true
+            },
+            saveAsImage: {
+              show: true
+            }
+          }
+        },
+        legend: {
+          data: [ '消费金额柱状图', '消费金额折线图'],
+          left: "left"
+        },
+        xAxis: [{
+          type: 'category',
+          data: ['2016年', '2017年', '2018年', '2019年', '2020年', '2021年', '2022年', '2023年', '2024年'],
+          axisPointer: {
+            type: 'shadow'
+          }
+        }],
+        yAxis: [{
+            type: 'value',
+            name: '消费金额柱状图',
+            axisLabel: {
+              formatter: '{value} 元'
+            }
+          },
+          {
+            type: 'value',
+            name: '消费金额折线图',
+            axisLabel: {
+              formatter: '{value} 元'
+            }
+          }
+        ],
+        visualMap: {
+          orient: 'horizontal',
+          left: 'center',
+          min: 5000,
+          max: 25000,
+          text: ['High', 'Low'],
+          // Map the score column to color
+          dimension: 1,
+          inRange: {
+             color:['#90d7ec','#76becc','#145b7d']
+          }
+        },
+        series: [
+          {
+            name: '消费金额柱状图',
+            type: 'bar',
+            tooltip: {
+              valueFormatter: function (value) {
+                return value + ' 元';
+              }
+            },
+            data: amountForcast //处理好的后台获取的所需数据（消费金额）
           },
           {
             name: '消费金额折线图',

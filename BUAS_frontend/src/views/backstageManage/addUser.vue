@@ -21,7 +21,7 @@
       <el-form-item label="持卡数量">
         <el-input placeholder="请输入用户持卡数量" clearable v-model="bankUser.creditCards"></el-input>
       </el-form-item>
-      <el-form-item label="办卡地区（中国范围）">
+      <el-form-item label="办卡地区">
         <el-select clearable v-model="bankUser.area" placeholder="请选择办卡所在省份">
           <el-option
             v-for="item in options1"

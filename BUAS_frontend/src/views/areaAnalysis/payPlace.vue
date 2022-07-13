@@ -1,12 +1,11 @@
 
 <template>
   <div>
-    <div style="position:absolute;left:1300px;top:73px">
+    <div style="position:absolute;left:1300px;top:34px">
       <el-button id="change" icon="el-icon-refresh" circle type="text" color="#c8c8c8"></el-button>
     </div>
 
-    <div id="cmap" class="chart-container" style="width:1280px; height:768px;margin:auto;top:80px;"></div>
-    <div style="height:78px"></div>
+    <div id="cmap" class="chart-container" style="width:1280px; height:700px;margin:auto;top:40px;"></div>
   </div>
 </template>
 <script>
@@ -83,6 +82,7 @@ export default {
                 },
                 mapType: "china",
                 data:data,
+                //未加循环时数据连接规则
                 // [
                 //     {
                 //         name: "广东",
@@ -91,136 +91,8 @@ export default {
                 //     {
                 //         name: "北京",
                 //         value: value.data[31].amount
-                //     },
-                //     {
-                //         name: "江苏",
-                //         value: value.data[19].amount
-                //     },
-                //     {
-                //         name: "浙江",
-                //         value: value.data[15].amount
-                //     },
-                //     {
-                //         name: "上海",
-                //         value: value.data[34].amount
-                //     },
-                //     {
-                //         name: "四川",
-                //         value: value.data[28].amount
-                //     },
-                //     {
-                //         name: "陕西",
-                //         value: value.data[3].amount
-                //     },
-                //     {
-                //         name: "湖北",
-                //         value: value.data[12].amount
-                //     },
-                //     {
-                //         name: "山东",
-                //         value: value.data[24].amount
-                //     },
-                //     {
-                //         name: "天津",
-                //         value: value.data[27].amount
-                //     },
-                //     {
-                //         name: "重庆",
-                //         value: value.data[4].amount
-                //     },
-                //     {
-                //         name: "湖南",
-                //         value: value.data[11].amount
-                //     },
-                //     {
-                //         name: "辽宁",
-                //         value: value.data[5].amount
-                //     },
-                //     {
-                //         name: "福建",
-                //         value: value.data[8].amount
-                //     },
-                //     {
-                //         name: "黑龙江",
-                //         value: value.data[0].amount
-                //     },
-                //     {
-                //         name: "河南",
-                //         value: value.data[16].amount
-                //     },
-                //     {
-                //         name: "河北",
-                //         value: value.data[17].amount
-                //     },
-                //     {
-                //         name: "广西",
-                //         value: value.data[21].amount
-                //     },
-                //     {
-                //         name: "吉林",
-                //         value: value.data[29].amount
-                //     },
-                //     {
-                //         name: "云南",
-                //         value: value.data[33].amount
-                //     },
-                //     {
-                //         name: "江西",
-                //         value: value.data[18].amount
-                //     },
-                //     {
-                //         name: "山西",
-                //         value: value.data[23].amount
-                //     },
-                //     {
-                //         name: "贵州",
-                //         value: value.data[6].amount
-                //     },
-                //     {
-                //         name: "台湾",
-                //         value: value.data[30].amount
-                //     },
-                //     {
-                //         name: "甘肃",
-                //         value: value.data[9].amount
-                //     },
-                //     {
-                //         name: "内蒙古",
-                //         value: value.data[32].amount
-                //     },
-                //     {
-                //         name: "新疆",
-                //         value: value.data[20].amount
-                //     },
-                //     {
-                //         name: "香港",
-                //         value: value.data[1].amount
-                //     },
-                //     {
-                //         name: "海南",
-                //         value: value.data[14].amount
-                //     },
-                //     {
-                //         name: "宁夏",
-                //         value: value.data[26].amount
-                //     },
-                //     {
-                //         name: "安徽",
-                //         value: value.data[25].amount
-                //     },
-                //     {
-                //         name: "青海",
-                //         value: value.data[2].amount
-                //     },
-                //     {
-                //         name: "西藏",
-                //         value: value.data[7].amount
-                //     },
-                //     {
-                //         name: "澳门",
-                //         value: value.data[10].amount
-                //     }
-                // ],
+                //       }
+                // ]
                 roam: false,
                 zoom: 1,
                 showLegendSymbol: false,
@@ -310,18 +182,19 @@ export default {
             itemWidth: 20,
             itemHeight: 14,
             borderWidth: 0,
+            bottom:80,
             pieces: [
                 {
                     min: 0,
                     max: 60,
                     label: "60以下",
-                    color: "#FFBCAF"
+                    color: "#FFDED7"
                 },
                 {
                     min: 60,
                     max: 70,
                     label: "60-70",
-                    color: "#FCA18F "
+                    color: "#FCB3A5"
                 },
                 {
                     min: 70,
@@ -344,7 +217,7 @@ export default {
                 {
                     min: 100,
                     label: "100以上",
-                    color: " #DC3A47"
+                    color: "#DC3A47"
                 }
             ]
         }
@@ -353,6 +226,7 @@ export default {
 const barOption = {
     title: {
       text: "各省份支付次数",
+      textStyle:{ fontSize:30},//标题字体样式,
       left: "center"
     },
     yAxis: {
@@ -385,14 +259,84 @@ const barOption = {
         type: 'shadow'
       }
     },
+    visualMap: {
+            show: true,
+            type: "piecewise",
+            min: 0,
+            max: 100,
+            inRange: {
+                color: [
+                    "#50a3ba",
+                    "#eac763",
+                    "#d94e5d"
+                ]
+            },
+            calculable: true,
+            inverse: false,
+            splitNumber: 5,
+            orient: "vertical",
+            showLabel: true,
+            itemWidth: 20,
+            itemHeight: 14,
+            borderWidth: 0,
+            bottom:80,
+            pieces: [
+                {
+                    min: 0,
+                    max: 60,
+                    label: "60以下",
+                    color: "#FFDED7"
+                },
+                {
+                    min: 60,
+                    max: 70,
+                    label: "60-70",
+                    color: "#FCB3A5"
+                },
+                {
+                    min: 70,
+                    max: 80,
+                    label: "70-80",
+                    color: "#FB947D"
+                },
+                {
+                    min: 80,
+                    max: 90,
+                    label: "80-90",
+                    color: "#F67764"
+                },
+                {
+                    min: 90,
+                    max: 100,
+                    label: "90-100",
+                    color: "#F06154"
+                },
+                {
+                    min: 100,
+                    label: "100以上",
+                    color: "#DC3A47"
+                }
+            ]
+        },
     animationDurationUpdate: 1000,
     series: {
       type: 'bar',
+      itemStyle:{
+        opacity: 0.9,
+        shadowBlur: 0.5,
+        shadowOffsetX: 0,
+        shadowOffsetY: 0,
+        shadowColor: 'rgba(0,0,0,0.9)'
+      },
       id: 'amount',
       data: data.map(function (item) {
         return item.value;
       }),
       universalTransition: true
+    },
+    grid:{
+        bottom: "60",
+        containLabel: true
     }
   };
 

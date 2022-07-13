@@ -63,6 +63,7 @@
             let option ={
                 title: {
                   text: "用户年龄聚合分析",
+                  textStyle:{ fontSize:30},//标题字体样式
                   left: "center"
                 },
                 grid:{

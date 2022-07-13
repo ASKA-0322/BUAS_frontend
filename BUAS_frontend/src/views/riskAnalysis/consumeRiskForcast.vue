@@ -53,6 +53,7 @@
         let option ={
           title: {
           text: "消费风险分析",
+          textStyle:{ fontSize:30},//标题字体样式,
           left: "center"
         },
         color:['#f5c7c7','#eb8f8f','#dd4444',],//分别指定扇形颜色

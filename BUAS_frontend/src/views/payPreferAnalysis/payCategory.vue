@@ -64,6 +64,7 @@
         let option = {
           title: {
             text: '消费类别',
+            textStyle:{ fontSize:30},//标题字体样式,
             left: "center"
           },
           tooltip: {
@@ -130,6 +131,13 @@
           series: [
             {
               type: 'bar',
+              itemStyle:{
+                opacity: 0.8,
+                shadowBlur: 1,
+                shadowOffsetX: 0,
+                shadowOffsetY: 0,
+                shadowColor: 'rgba(0,0,0,0.9)'
+              },
               data:data,
                     //[
                       // { value: 18203, name: "服装鞋帽" },
@@ -142,6 +150,7 @@
                       // { value: 191214, name: "食品、保健品" },
                       // { value: 210715, name: "文体用品" }
                     //]
+
           },]}
         myChart.setOption(option);    //调用工具
         }

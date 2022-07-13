@@ -67,6 +67,7 @@
         let option = {
   title: {
     text: '用户消费预测',
+    textStyle:{ fontSize:25},//标题字体样式,
     left:'center'
   },
   tooltip: {

@@ -82,6 +82,7 @@
           },
           title: {
             text: "风险性别特征",
+            textStyle:{ fontSize:28},//标题字体样式
             left: "center"
           },
           legend: {
