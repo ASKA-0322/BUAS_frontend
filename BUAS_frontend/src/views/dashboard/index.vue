@@ -21,8 +21,8 @@ export default {
   &-container {
     //margin: 30px;
     width: 100%;
-    height: 100%;
-    background-image: url("../../assets/mainPage.png");
+    height: 750px;
+    background-image: url("../../assets/logoWelcome.png");
     background-size: 100% 100%;
   }
 /*   &-bottomText {
@@ -37,7 +37,7 @@ export default {
 }
 .main {
   width:100%;
-  height:825px;
+  height:650px;
   //margin-left: -30px;
 
   //background-size: cover;

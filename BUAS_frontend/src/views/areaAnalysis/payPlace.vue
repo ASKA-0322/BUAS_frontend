@@ -1,11 +1,11 @@
 
 <template>
   <div>
-    <div style="position:absolute;left:1300px;top:34px">
+    <div style="position:absolute;left:1300px;top:34px;">
       <el-button id="change" icon="el-icon-refresh" circle type="text" color="#c8c8c8"></el-button>
     </div>
-
     <div id="cmap" class="chart-container" style="width:1280px; height:700px;margin:auto;top:40px;"></div>
+    <div style="height:80px"></div>
   </div>
 </template>
 <script>
