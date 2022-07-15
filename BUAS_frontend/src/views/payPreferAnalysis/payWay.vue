@@ -1,7 +1,7 @@
 <template>
 
   <div class="app-container" id="main">
-    支付方式
+    <!-- 支付方式 -->
   </div>
 
 </template>

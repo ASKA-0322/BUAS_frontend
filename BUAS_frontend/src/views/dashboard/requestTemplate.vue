@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    哎哟 不错哦
+    <!-- 哎哟 不错哦 -->
   </div>
 </template>
 <script>

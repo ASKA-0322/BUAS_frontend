@@ -1,7 +1,7 @@
 <template>
 
   <div class="app-container" id="main">
-    用户消费预测
+    <!-- 用户消费预测 -->
   </div>
 
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div class="app-container" id="main">
-    风险性别特征
+    <!-- 风险性别特征 -->
   </div>
 </template>
 <script>

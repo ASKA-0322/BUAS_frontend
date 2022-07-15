@@ -1,7 +1,7 @@
 <template>
 
   <div class="app-container" id="main" >
-    用户年龄聚合分析
+    <!-- 用户年龄聚合分析 -->
   </div>
 
 </template>

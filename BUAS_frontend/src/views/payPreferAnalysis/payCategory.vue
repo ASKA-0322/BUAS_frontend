@@ -1,7 +1,7 @@
 <template>
 
   <div class="app-container" id="main">
-      消费类别
+      <!-- 消费类别 -->
   </div>
 
 </template>

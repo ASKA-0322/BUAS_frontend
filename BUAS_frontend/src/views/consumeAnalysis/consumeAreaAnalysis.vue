@@ -1,6 +1,6 @@
 <template>
   <div class="app-container" id="main">
-    地域消费分析
+    <!-- 地域消费分析 -->
   </div>
 </template>
 <script>

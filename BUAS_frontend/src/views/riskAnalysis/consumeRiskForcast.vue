@@ -1,6 +1,6 @@
 <template>
   <div class="app-container" id="main">
-    消费风险分析
+    <!-- 消费风险分析 -->
   </div>
 </template>
 <script>
