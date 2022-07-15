@@ -97,8 +97,8 @@
           visualMap: {
             orient: 'horizontal',
             left: 'center',
-            min: 100,
-            max: 300,
+            min: 200,
+            max: 550,
             text: ['High', 'Low'],
             // Map the score column to color
             dimension: 0,

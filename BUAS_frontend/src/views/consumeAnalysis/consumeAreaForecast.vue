@@ -229,7 +229,7 @@
           }
         },
         legend: {
-          data: [ '消费金额柱状图', '消费金额折线图'],
+          data: [ '消费金额', '消费预测金额'],
           left: "left"
         },
         xAxis: [{
@@ -241,14 +241,14 @@
         }],
         yAxis: [{
             type: 'value',
-            name: '消费金额柱状图',
+            name: '消费金额',
             axisLabel: {
               formatter: '{value} 元'
             }
           },
           {
             type: 'value',
-            name: '消费金额折线图',
+            name: '消费预测金额',
             axisLabel: {
               formatter: '{value} 元'
             }
@@ -268,7 +268,7 @@
         },
         series: [
           {
-            name: '消费金额柱状图',
+            name: '消费金额',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -277,7 +277,7 @@
             },
           },
           {
-            name: '消费金额折线图',
+            name: '消费预测金额',
             type: 'line',
             yAxisIndex: 1,
             tooltip: {
@@ -345,7 +345,7 @@
           }
         },
         legend: {
-          data: [ '消费金额柱状图', '消费金额折线图'],
+          data: [ '消费金额', '消费预测金额'],
           left: "left"
         },
         xAxis: [{
@@ -357,14 +357,14 @@
         }],
         yAxis: [{
             type: 'value',
-            name: '消费金额柱状图',
+            name: '消费金额',
             axisLabel: {
               formatter: '{value} 元'
             }
           },
           {
             type: 'value',
-            name: '消费金额折线图',
+            name: '消费预测金额',
             axisLabel: {
               formatter: '{value} 元'
             }
@@ -384,7 +384,7 @@
         },
         series: [
           {
-            name: '消费金额柱状图',
+            name: '消费金额',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -394,7 +394,7 @@
             data: amountForcast //处理好的后台获取的所需数据（消费金额）
           },
           {
-            name: '消费金额折线图',
+            name: '消费预测金额',
             type: 'line',
             yAxisIndex: 1,
             tooltip: {
